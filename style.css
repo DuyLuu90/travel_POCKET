@@ -1,0 +1,110 @@
+* {box-sizing: border-box;}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;}
+
+.topnav a:hover {
+  background-color: rgba(190, 211, 73, 0.24);
+  color: black;
+}
+
+.topnav a.active {
+  background-color: rgb(52, 153, 235);
+  color: white;
+}
+
+.search-container {
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: white;
+}
+
+.hidden {
+  display: none;
+}
+
+#display {
+  display: block;
+  position: absolute;
+  margin-top: 20px;
+}
+
+li {
+  text-decoration: none;
+  text-align: left;
+}
+
+li:hover {
+  background-color: burlywood;
+}
+
+.search-container button {
+  background-color: white;
+  cursor: pointer;
+}
+
+.search-container input, .search-container button {
+  padding: 6px;
+  border: none;
+}
+
+img {max-width:400px; height:auto; margin-top: 50px; }
+
+main {padding-top: 60px; text-align:center;}
+
+/* .container{
+  position: relative; 
+   margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+} */
+.container {
+  background-color: #bbb;
+}
+.container:nth-child(even) {
+  background-color: #ddd;
+}
+
+.sub-container {
+  /* min-width: 150px; */
+  max-width: 150px;
+  min-height: 200px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: pink; 
+}
+
+.one{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}  
+
+.two {
+  width: 100%;
+  min-height: 800px;
+}
+
+.button {
+  padding: 10px;
+}
+
+@media screen and (min-width: 600 px) {
+
+.one {
+  float:right;
+}
+
+}

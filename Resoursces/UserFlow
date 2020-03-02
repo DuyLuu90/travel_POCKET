@@ -1,0 +1,97 @@
+Distinct views:
+
+Home page - basic view - starts with city selector box and trip cost counter ($0 to start) as well as a hidden button to reset trip cost -- once trip cost is above $0 button is no longer hidden
+
+  User enters city in city selector box and clicks submit -->
+    User is shown basic capsule data of the city
+      Brief description
+      Photo
+      Current weather information
+      Link to flight data
+      Link to accommodations data
+      Link to tourism data
+      Link to restaurant data
+
+    User clicks on flight data -->
+      User is shown list of destination cities with links to flight data
+        User clicks on a destination city -->
+          User is prompted for start date, end date
+          User enters information -->
+            Flight data for one-way and round-trip flights for one to that city is shown
+            If no information is available for that combination of entries,user-friendly error message is displayed
+            Link to book flight
+            Link to add flight cost to trip
+            
+            User clicks on book flight -->
+              User is taken to a separate tab <place to purchase flight>
+            User clicks on add cost to trip -->
+              Flight cost is added to trip cost counter
+                
+    User clicks on accommodations data -->
+      User is shown list of accommodations with basic capsule data
+        Name of accommodation
+        Brief description
+        Price range
+        Link to bookings
+
+        User clicks on bookings -->
+          User is prompted for start date, end date
+          User enters information -->
+            Information about available single hotel rooms is shown
+            If no information is available for that combination of entries,user-friendly error message is displayed
+            User is prompted to add hotel costs to trip
+            User clicks "Yes" -->
+              Flight cost is added to trip cost counter
+
+    User clicks on tourism data -->
+      User is shown list of tourist sites with basic capsule data
+        Name of tourist site
+        Brief description
+        Price range
+        Link to that location's website
+        Link to add location cost to trip cost
+
+        User clicks on website link -->
+          User is taken to separate tab with that website
+    
+        User clicks on cost add link -->
+        IF pricing data available...
+          App calculates cost for one person using the average of the price range (if only one price, app uses that price)
+          App adds this cost to trip cost counter
+        IF no pricing data available...
+          User-friendly error message is displayed for this feature
+          User is given option to enter an estimated cost
+          User enters data -->
+            App adds this cost to trip cost counter
+
+    User clicks on restaurant data -->
+      User is shown list of restaurants available on Maps API
+        Name of restaurant
+        Brief description
+        Price range
+        Link to that location's website
+        Link to reservations
+        Link to add visit cost to trip cost
+
+        User clicks on location website link -->
+          User is taken to separate tab with that website
+
+        User clicks on reservations link -->
+        IF reservations are available via OpenTable or a like site...
+          User is brought to that site
+        IF reservations are not available in this way...
+          User-friendly error message is displayed
+          User is prompted with a link to that restaurant's website
+          User clicks on link -->
+            User is taken to separate tab with that website
+
+        User clicks on add visit cost link -->
+          App calculates cost for one by average of price range
+          App adds this cost to trip cost counter          
+
+  User clicks on trip cost reset box -->
+    User is prompted "Are you sure you want to reset the trip cost?"
+      User clicks on "Yes" -->
+        Trip cost counter resets to $0
+      User clicks on "No" -->
+        Selector disappears and user remains on homepage
