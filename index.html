@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>API HACK CAPSTONE</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <nav class='topnav'>
+      <a class="active" href="#home">Home Page</a>
+
+      <div class="search-container">
+        <form id='search'>
+          <input type="text" id='search-box' placeholder="Search" >
+          <ul id='display' z-index=1000></ul> 
+          <!-- to get the suggestion from server -->
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+    </nav>
+
+    <main>
+      <section id='home'>
+        <!-- <h1> Welcome to TRAVEL PLANNER</h1> -->
+        <form id='citySearch'>
+          <div class='countryList'>
+            <label for="country">Select a country</label>
+            <select id="country" name="country" class="form-control">
+            
+            </select>
+          </div>
+
+          <div class='cityList'>
+            <label for="city">Select a city</label>
+            <select id="city" name="city" class="form-control">
+            <!-- <option value="Phoenix">Phoenix</option> -->
+          </select>
+          </div>
+
+          <input type='submit' value='GO'>
+
+          
+        </form>
+
+        <div class='image'>
+
+          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes'>
+
+          <!-- <img src='https://gci.wrdsb.ca/files/2015/05/Welcome-in-different-languages.gif' alt='Welcome'> -->
+        </div>
+      </section>
+
+    </main>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="javascript/script.js"></script>
+    <script src="javascript/renderHTML.js"></script>
+    <script src="javascript/suggestions.js"></script>
+    <script src="javascript/countryList.js"></script>
+    <script src="javascript/cityList.js"></script>
+  </body>
+
+</html>
