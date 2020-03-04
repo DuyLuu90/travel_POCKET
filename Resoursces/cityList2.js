@@ -1,3 +1,4 @@
+const cityList2=
 [
   {
     "airportCode": "HEA",

@@ -13,10 +13,12 @@ function handleSeachButton() {
   })  
 }
 
+
+
 function runApp() {
   handleSeachButton();
   displayCountries();
-  getCountryCode ();
+  displayCity();
 }
 
 $(runApp);

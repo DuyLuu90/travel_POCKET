@@ -30,21 +30,18 @@
   background-color: white;
 }
 
-<<<<<<< HEAD
-=======
  /* #citySearch {
   display: flex;
   justify-content: center; 
 }  */
 section {
-  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .countryList {
   max-height: 20px;
 }
 
->>>>>>> 5bc96c8789b5ec75cba6eae90af00938659bf780
 .hidden {
   display: none;
 }
