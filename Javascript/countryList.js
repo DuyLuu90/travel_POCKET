@@ -234,7 +234,7 @@ const countryList =
 
 function displayCountries() {
     for (let i=0; i<countryList.length;i++) {
-        $('#country').append(`
+        $('#countryGroup2').append(`
         <option value="${countryList[i].code}">${countryList[i].name}</option>`)
     }
 }

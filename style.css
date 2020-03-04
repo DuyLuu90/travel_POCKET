@@ -30,9 +30,12 @@
   background-color: white;
 }
 
-#citySearch {
+ /* #citySearch {
   display: flex;
-  justify-content: center;
+  justify-content: center; 
+}  */
+section {
+  padding: 10px;
 }
 
 .countryList {
