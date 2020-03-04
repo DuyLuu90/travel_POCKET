@@ -14,7 +14,7 @@ function getCountryCode(searchedTerm) {
 
 
   const googleSearchTerm = '';
-  
+
 }
 
 
@@ -44,21 +44,36 @@ function getKnowledgeData(googleSearchTerm) {
 
 }
 
+function displayCityResults(json) {
+
+    $("#knowledge-bar-results").empty();
+
+    $("#knowledge-bar-results").append(
+        `<li>
+            <h3>${json.itemListElement.result.name}</h3>
+            <p>${json.itemListElement.result.detailedDescription.articleBody}</p>
+            <p><img src='${json.itemListElement.result.image.contentUrl}'  alt='Picture of ${json.itemListElement.result.name}></p>
+            `
+    )
+    $("knowledge-bar").removeClass('hidden');
+
+}
+
 
 
 function handleSearchButton() {
-  $('#search').submit(event => {
-    event.preventDefault();
-    const searchedTerm=$('#search-box').val().toUpperCase();
-    renderHomePage(searchedTerm);
-    $('main').html(`${html}`);
-  })  
+    $('#search').submit(event => {
+        event.preventDefault();
+        const searchedTerm=$('#search-box').val().toUpperCase();
+        renderHomePage(searchedTerm);
+        $('main').html(`${html}`);
+    })  
 }
 
 function runApp() {
-  handleSearchButton();
-  displayCountries();
-  getCountryCode();
+    handleSearchButton();
+    displayCountries();
+    getCountryCode();
 }
 
 $(runApp);
