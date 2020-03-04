@@ -1,6 +1,6 @@
-function renderHomePage(city) {
+function renderHomePage(city,country) {
     return(`
-    <h3> Welcome to ${city}
+    <h3> Welcome to ${city}, ${country} </h3>
     <div>
   
       <div class='container one'>
@@ -12,8 +12,9 @@ function renderHomePage(city) {
         CURRENT WEATHER
         </div>
   
-        <div class='sub-container'>
-        OTHER INTERESTING INFO
+        <div class='sub-container3'>
+          <p>Top 5 trending videos in ${country} </p>
+          <div id='videoList'></div>
         </div>
           
       </div> 
@@ -39,6 +40,18 @@ function renderHomePage(city) {
    
     `)
   }
+
+function displayVideo(response) {
+  let array=response.items;
+  let html= array.map(obj => `
+  <div class='video'>    
+    <iframe
+    src="https://www.youtube.com/embed/${obj.id}"></iframe> 
+    <div class='videoTitle'>${obj.snippet.title}</div>
+  </div>`)
+  html.join('');
+  $('#videoList').html(html);
+}
 
 /*
 function renderFlightPage() {

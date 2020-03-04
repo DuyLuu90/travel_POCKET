@@ -12,6 +12,7 @@ function displayCity() {
         }
         store.sort((a,b)=>a.city.localeCompare(b.city));
 
+
         console.log(CC);
         console.log(store);
         let html= generateCityOptions(store);
@@ -21,7 +22,7 @@ function displayCity() {
 
 function generateCity(item) {
     return `
-    <option value='${item.airportCode}'>${item.city} (${item.airportCode})
+    <option value='${item.airportCode}'>${item.city}(${item.airportCode})</option>
     `
 }
 

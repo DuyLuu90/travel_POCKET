@@ -30,18 +30,6 @@
   background-color: white;
 }
 
- /* #citySearch {
-  display: flex;
-  justify-content: center; 
-}  */
-section {
-  margin-bottom: 10px;
-}
-
-.countryList {
-  max-height: 20px;
-}
-
 .hidden {
   display: none;
 }
@@ -71,6 +59,21 @@ li:hover {
   border: none;
 }
 
+section {
+  margin-bottom: 10px;
+}
+
+#citySearch input{
+  background-color: rgb(52, 153, 235);
+  color: white;
+  border-color: rgba(70, 62, 62, 0.13);
+}
+
+#citySearch input:hover{
+  background-color: chocolate;
+  cursor: pointer;
+}
+
 img {max-width:400px; height:auto; margin-top: 50px; }
 
 main {padding-top: 60px; text-align:center;}
@@ -91,7 +94,7 @@ main {padding-top: 60px; text-align:center;}
 
 .sub-container {
   /* min-width: 150px; */
-  max-width: 150px;
+  /* max-width: 150px; */
   min-height: 200px;
   margin-bottom: 20px;
   padding: 10px;
@@ -107,6 +110,26 @@ main {padding-top: 60px; text-align:center;}
 .two {
   width: 100%;
   min-height: 800px;
+}
+
+.sub-container3 p {
+  font-size: 30px;
+  font-weight: bolder;
+}
+
+
+#videoList{
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.video{
+  display: flex;
+}
+iframe {
+  width: 150px;
+  height: 100px;
+  padding-right: 10px;
 }
 
 .button {
