@@ -26,6 +26,7 @@
     <main>
       <section id='home'>
         <!-- <h1> Welcome to TRAVEL PLANNER</h1> -->
+<<<<<<< HEAD
         <form>
           <label for="country">Select a country</label>
           <select id="country" name="country" class="form-control">
@@ -36,6 +37,33 @@
           <select id="city" name="city" class="form-control">
             <option value="Phoenix">Phoenix</option>
           </select>
+=======
+        <form id='citySearch'>
+          <section class='countryList'>
+            <label for="country">Select a country</label>
+            <select id="country" name="country" class="form-control">
+              <optgroup label="Most Popular">
+                <option value="US">United States</option>
+                <option value="CN">China</option>
+                <option value="JP">Japan</option>
+              </optgroup>
+              <optgroup label="List of countries (A-Z)" id='countryGroup2'>
+
+              </optgroup>
+            </select>
+          </section>
+
+          <section class='cityList'>
+            <label for="city">Select a city</label>
+            <select id="city" name="city" class="form-control">
+            <!-- <option value="Phoenix">Phoenix</option> -->
+            </select>
+          </section>
+
+          <input type='submit' value='EXPLORE'>
+
+          
+>>>>>>> 5bc96c8789b5ec75cba6eae90af00938659bf780
         </form>
 
         <div class='image'>
@@ -52,6 +80,11 @@
     <script src="javascript/script.js"></script>
     <script src="javascript/renderHTML.js"></script>
     <script src="javascript/suggestions.js"></script>
+<<<<<<< HEAD
+=======
+    <script src="javascript/countryList.js"></script>
+    <script src="javascript/cityList.js"></script>
+>>>>>>> 5bc96c8789b5ec75cba6eae90af00938659bf780
   </body>
 
 </html>

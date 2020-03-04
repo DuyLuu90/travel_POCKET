@@ -15,6 +15,8 @@ function handleSeachButton() {
 
 function runApp() {
   handleSeachButton();
+  displayCountries();
+  getCountryCode ();
 }
 
 $(runApp);
