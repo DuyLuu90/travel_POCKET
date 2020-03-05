@@ -20,9 +20,10 @@ Const= Param2 {	Part: snippet,
 			    Key: `${ytKey}`	}
 
 GET WX:
-
 const wxKey='7b211a1b93a6cb41ed410fb0d6ada9a6'
 
+GET TIME ZONE:
+https://maps.googleapis.com/maps/api/timezone/json?parameters
 
 GET FLIGHTS:
 https://api.skypicker.com/flights
