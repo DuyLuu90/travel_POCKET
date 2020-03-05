@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -16,7 +16,7 @@
       <div class="search-container">
         <form id='search'>
           <input type="text" id='search-box' placeholder="Search" >
-          <ul id='display' z-index=1000></ul> 
+          <ul id='suggestion' z-index=1000></ul> 
           <!-- to get the suggestion from server -->
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
@@ -34,6 +34,7 @@
                 <option value="US">United States</option>
                 <option value="CN">China</option>
                 <option value="JP">Japan</option>
+                <option value="VN">Viet Nam</option>
               </optgroup>
               <optgroup label="List of countries (A-Z)" id='countryGroup2'>
 
@@ -44,18 +45,17 @@
           <section class='cityList'>
             <label for="city">Select a city</label>
             <select id="city" name="city" class="form-control">
-            <!-- <option value="Phoenix">Phoenix</option> -->
+              <!-- <option value=""></option> -->
             </select>
           </section>
 
           <input type='submit' value='EXPLORE'>
-
-          
+  
         </form>
 
         <div class='image'>
 
-          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes'>
+          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes' id='homeImage'>
 
           
         </div>

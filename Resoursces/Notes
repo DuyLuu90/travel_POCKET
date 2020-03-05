@@ -1,9 +1,49 @@
 /* this is where you put the URL(s), API keys, resources, etc.*/
 
+GET YT VIDEOS:
+const ytKey= ‘AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To’;
+
+List of regions that Youtube website support:
+https://www.googleapis.com/youtube/v3/i18nRegions
+const= Param1 {	Part: snippet,
+			    Key: `${ytKey}`	}
+
+ID: response.items.id
+Names: response.items.name
+
+List of trending videos:
+https://www.googleapis.com/youtube/v3/videos 
+Const= Param2 {	Part: snippet,
+			    Chart: mostPopular,
+			    Result: 5,
+			    regionCode: ${},
+			    Key: `${ytKey}`	}
+
+GET WX:
+
+const wxKey='7b211a1b93a6cb41ed410fb0d6ada9a6'
+
+
+GET FLIGHTS:
+https://api.skypicker.com/flights
+
+const param3 {
+     flyFrom: 
+     to:
+     dateFrom: DD/MM/YYYY
+     dateTo: DD/MM/YYYY
+     partner:picky
+     v:3
+}
+
+https://skyscanner.github.io/slate/#browse-quotes 
+
+https://docs.mapbox.com/help/how-mapbox-works/
+
 FOR WIKIPEDIA:
 https://en.wikipedia.org/w/api.php?
 
-wikipedia seems not to support CORS so one way to get around is to use JSONP (json with padding)
+wiki seems not to support CORS so one way to get around is to use JSONP (json with padding)
 
 optional feature: searchSuggestion/autocomplete
 

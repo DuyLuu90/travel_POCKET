@@ -2,14 +2,18 @@ function renderHomePage(city,country) {
     return(`
     <h3> Welcome to ${city}, ${country} </h3>
     <div>
-  
       <div class='container one'>
+    
+      </div>
+  
+      <div class='container two'>
         <div class='sub-container'>
         CITY IMAGE
         </div>
   
-        <div class='sub-container'>
-        CURRENT WEATHER
+        <div class='sub-container2'>
+
+          
         </div>
   
         <div class='sub-container3'>
@@ -18,10 +22,6 @@ function renderHomePage(city,country) {
         </div>
           
       </div> 
-  
-      <div class='container two'>
-  
-      </div>
   
       <div class='container three'>
         <h4> Travel tools </h4>
@@ -51,6 +51,16 @@ function displayVideo(response) {
   </div>`)
   html.join('');
   $('#videoList').html(html);
+}
+
+function displayWeather(response) {
+  let html= `
+    <h3>${response.name}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
+    <p> ${response.main.temp}<span>&#8451;</span> </p>
+    <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
+    <p> Humidity ${response.main.humidity}% </p> `
+    console.log(html);
+  $('.sub-container2').html(html);
 }
 
 /*
