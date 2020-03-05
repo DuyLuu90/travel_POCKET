@@ -118,9 +118,11 @@ main {padding-top: 60px; text-align:center;}
 }
 
 .currentTemp {
+  display: flex;
   font-size: 30px;
   font-weight: bold;
   color: white;
+  justify-content: center;
 }
 
 .sub-container3{

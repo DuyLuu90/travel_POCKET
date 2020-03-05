@@ -41,10 +41,8 @@ function handleExploreButton() {
     $('main').html(`${html}`);
 
     const URL1= `${wxURL}lat=${searchedTerm.latitude}&lon=${searchedTerm.longitude}`
-    console.log(URL1);
     fetch(URL1)
     .then(response=> {
-      console.log(response);
       if (response.ok) return response.json()
       throw new Error (`${response.message}`)  })
     .then(json=>displayWeather(json))

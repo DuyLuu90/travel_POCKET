@@ -54,12 +54,17 @@ function displayVideo(response) {
 }
 
 function displayWeather(response) {
+  let cityName = response.name.toUpperCase();
+  let description= response.weather[0].description.toUpperCase();
   let html= `
-    <h3>${response.name}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
+    <h3>${cityName}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
     <p class='date'> ${d} </p>
-    <p class='currentTemp'> <i src='http://openweathermap.org/img/wn/${response.weather.icon}@2x.png' alt='wxIcon'> ${response.main.temp}<span>&#8451;</span> </p>
+    <div class='currentTemp'> 
+      <img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'> 
+      <p>${response.main.temp}<span>&#8451;</span></p>
+    </div>
     <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
-    <p> ${response.weather.description.toUpperCase()} <span>&#8451;</span> Humidity ${response.main.humidity}% </p> `
+    <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
     console.log(html);
   $('.sub-container2').html(html);
 }
