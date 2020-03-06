@@ -1,44 +1,45 @@
 function renderHomePage(city,country,airport) {
     return(`
-    <h3> Welcome to ${city}, ${country} </h3>
+    <h1> Welcome to ${city}, ${country} </h1>
     <div>
       <div class='container one'>
     
       </div>
   
       <div class='container two'>
-        <div class='sub-container'>
+        <div class='sub js-image'>
         CITY IMAGE
         </div>
   
-        <div class='sub-container2'>
+        <div class='sub js-weather'>
           <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
           <div class='weatherInfo'>
           </div>  
 
         </div>
   
-        <div class='sub-container3'>
-          <p>Top 5 trending videos in ${country} </p>
+        <div class='sub js-video'>
+          <h3>Top 5 trending videos in ${country} </h3>
           <div id='videoList'></div>
         </div>
           
       </div> 
   
-      <div class='container three'>
-        <h4> Travel tools </h4>
+      <div class='container search'>
+        <h2> Travel tools </h2>
         <p> Enter the date to explore your travel options </p>
-        <form>
-          <input type='date' id='check-in' required>
-          <input type='date' id='check-out'>
-          <div class='button'>
-            <button type='submit' id='flight'> Check Flights</button>
-            <button type='submit' id='hotel'> Check Hotels </button>
-          </div>
+        <form id='flight'>
+          <input type='date' id='fromDate' required>
+          <input type='date' id='toDate'>
+          <br>
+          <br>
+          <input type='submit' value='Check Flight'>
+          
         </form>
-      <div>
+      </div>    
+    
 
-      <div class='js-results'>
+      <div class='container results'>
         <div class='flights'>
 
         </div>
@@ -75,31 +76,33 @@ function displayWeather(response) {
     </div>
     <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
     <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
-    console.log(html);
   $('.weatherInfo').html(html);
 }
 
 function displayFlights(response) {
   let results=response.data;
-  let html= results.map(obj=>
+  
+  let html= results.map(obj=> 
     /*
     let desCityCode=obj.flyTo;
     let desCountry=obj.country.name;
     */
-    `<div>
-      <div>
-        <p>${obj.cityFrom}</p>
-        <p>${obj.cityTo}</p>
+    `<div class='flight'>
+      <input type='submit' value='$${obj.price}'>
+      <div class='summary'>
+        <p>${obj.cityFrom} &rarr; </p>
+        <h2>${obj.cityTo}</h2>
         <p>${obj.countryTo.name}</p>
-        <p>Duration: ${obj['fly_duration']} </p>
-        <p>From: $${obj.price} on ${obj.airlines[0]} </p>
+        <p>Duration: ${obj['fly_duration']}</p>
+        <hr>
+        <p>From: $${obj.price} on ${obj.airlines[0]}</p>
       </div>
-      <div>
-      </div>
-    </div>`
+    </div>` 
   )
   html.join('');
-  $('.flights').html(html);
+  $('.flights').html(`
+    <h1> Top flight deals for you </h1>
+    ${html}`);
 }
 
 /*

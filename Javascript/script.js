@@ -17,6 +17,8 @@ const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mos
 
 const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
 
+const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
+
 function handleSeachButton() {
   $('#search').submit(event => {
     event.preventDefault();
@@ -59,7 +61,28 @@ function handleExploreButton() {
     .then(json=>displayVideo(json))
     .catch (error=> $('.sub-container3').html('Invalid Region Code'))
 
-    const URL3='https://api.skypicker.com/flights?fly_from=PHX&fly_to=anywhere&date_from=08/08/2020&date_to=08/09/2020&flight_type=oneway&partner=picky&v=3&limit=5&sort=price&asc=1&curr=USD'
+  })
+}
+
+function handleFlightSearchSubmitted() {
+  $('main').on('submit', '#flight', event=> {
+    event.preventDefault();
+    //change date format
+    let fromDate=$('#fromDate').val().split('-').reverse();
+    let toDate=$('#toDate').val().split('-').reverse();
+
+    let newFromDate=fromDate.join('/');    
+    let newToDate=toDate.join('/');
+
+    let flightParam = {
+      "fly_from" : searchedTerm.airportCode,
+      'date_from': `${newFromDate}`,
+      'date_to': `${newToDate}`
+    }
+
+    let URL3= flyURL+'&'+ $.param(flightParam)
+    console.log (URL3);
+
     fetch(URL3)
     .then(response=> {
       if (response.ok) return response.json()
@@ -68,7 +91,7 @@ function handleExploreButton() {
       console.log(json)
       displayFlights(json)})
     .catch (error=> console.log(error));
-
+    
   })
 }
 
@@ -78,6 +101,7 @@ function runApp() {
   displayCity();
   handleExploreButton();
   pageLoad ();
+  handleFlightSearchSubmitted();
 }
 
 $(runApp);
