@@ -47,10 +47,11 @@ function getWikiData(searchedTerm) {
         action: "query",
         format: "json",
         origin: "*",
-        list: "search",
-        srsearch: searchedTerm,
-        srprop: "snippet",
-        srlimit: 1,
+        prop: "images|extracts",
+        exintro: 1,
+        explaintext: 1,
+        redirects: 1,
+        titles: searchedTerm,
   }
 
   const wikiQueryString = $.param(params);
@@ -71,17 +72,26 @@ function displayCityResults(json) {
 
   console.log("displayCityResults firing!");
 
+  
   $("#knowledge-bar-results").empty();
 
   console.log(json);
 
+  let wikiObject = json.query.pages;
+
+  for (let key in wikiObject) {  
+  
+  let imageName = wikiObject[key].images[0].title.replace("File:", "");
+
   $("#knowledge-bar-results").append(
       `<li>
-          <h3>${json.query.search.title}</h3>
-          <p>${json.query.search.snippet}</p>
+          <h3>${wikiObject[key].title}</h3>
+          <p><img src="https://upload.wikimedia.org/wikipedia/commons/${imageName}" alt="A picture"></p>
+          <p>${wikiObject[key].extract}</p>
           `
   )
   $("#knowledge-bar").removeClass('hidden');
+  }
 
 }
 
