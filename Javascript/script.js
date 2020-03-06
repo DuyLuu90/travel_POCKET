@@ -1,11 +1,10 @@
 'use strict';
 
-
-
+let searchedTerm = '';
 
 const googleSearchUrl = "https://kgsearch.googleapis.com/v1/entities:search";
 
-const google_api_key = "AIzaSyAe5uuD2UQozJY02zt42HAFnCCeWq-nd8s"
+const wikiSearchUrl = "https://en.wikipedia.org/w/api.php"
 
 // const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
 
@@ -16,38 +15,24 @@ const google_api_key = "AIzaSyAe5uuD2UQozJY02zt42HAFnCCeWq-nd8s"
 
 } */
 
-function displayCityResults(json) {
-
-  $("#knowledge-bar-results").empty();
-
-  console.log(json);
-
-  $("#knowledge-bar-results").append(
-      `<li>
-          <h3>${json.itemListElement.result.name}</h3>
-          <p>${json.itemListElement.result.detailedDescription.articleBody}</p>
-          <p><img src='${json.itemListElement.result.image.contentUrl}'  alt='Picture of ${json.itemListElement.result.name}></p>
-          `
-  )
-  $("knowledge-bar").removeClass('hidden');
-
-}
 
 
-function getKnowledgeData(googleSearchTerm) {
+
+/* function getKnowledgeData(googleSearchTerm) {
 
     console.log('Getting knowledge panel data...');
 
     let params = {
-      key: google_api_key,
       query: googleSearchTerm,
-      types: "City",
+      types: 'CITY',
+      key: google_api_key,
     }
 
     const googleQueryString = $.param(params);
     const url = `${googleSearchUrl}?${googleQueryString}`;
     fetch(url).then(resp => {
       if(resp.ok) {
+        console.log("1st",resp);
         return resp.json();
       }
 
@@ -55,19 +40,59 @@ function getKnowledgeData(googleSearchTerm) {
     }).then(respJson=>displayCityResults(respJson))
 
 
+} */
+
+function getWikiData(searchedTerm) {
+    let params = {
+        action: "query",
+        format: "json",
+        list: "search",
+        srsearch: searchedTerm,
+        srlimit: 1,
+        srprop: "snippet",
+  }
+
+  const wikiQueryString = $.param(params);
+  const url = `${wikiSearchUrl}?${wikiQueryString}`;
+  fetch(url).then(resp => {
+    if(resp.ok) {
+      console.log("1st",resp);
+      return resp.json();
+    }
+
+    throw new Error(resp.statusText);
+  }).then(respJson=>displayCityResults(respJson))
+
 }
 
 
+function displayCityResults(json) {
 
-function renderHomePage(searchedTerm) {
+  console.log("displayCityResults firing!");
 
-    
+  $("#knowledge-bar-results").empty();
+
+  console.log(json);
+
+  $("#knowledge-bar-results").append(
+      `<li>
+          <h3>${json.query.search.title}</h3>
+          <p>${json.query.search.snippet}</p>
+          `
+  )
+  $("knowledge-bar").removeClass('hidden');
+
+}
+
+
+/* function renderHomePage(searchedTerm) {
+    console.log(`renderHomePage firing!`);
     console.log(`Looking for ${searchedTerm}...`);
 
     const googleSearchTerm = `${searchedTerm}, France`;
     getKnowledgeData(googleSearchTerm);
 
-}
+} */
 
 
 function handleSearchButton() {
@@ -76,21 +101,21 @@ function handleSearchButton() {
 
     $('#search').submit(event => {
         event.preventDefault();
-        const searchedTerm=$('#search-box').val().toUpperCase();
-
+        const searchedTerm=$('#search-box').val();
         console.log(`Search for ${searchedTerm} is on!`);
-        
-        renderHomePage(searchedTerm);
-
-        console.log('Just called renderHomePage...');
+        getWikiData(searchedTerm);
+        console.log('Just called getKnowledgeData...');
 //        $('main').html(`${html}`);
-    })  
+    }) 
+
+
+
 }
 
 function runApp() {
     handleSearchButton();
-    displayCountries();
-    getCountryCode();
+//    displayCountries();
+//   getCountryCode();
 }
 
 $(runApp);
