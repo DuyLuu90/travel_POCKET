@@ -46,10 +46,11 @@ function getWikiData(searchedTerm) {
     let params = {
         action: "query",
         format: "json",
+        origin: "*",
         list: "search",
         srsearch: searchedTerm,
-        srlimit: 1,
         srprop: "snippet",
+        srlimit: 1,
   }
 
   const wikiQueryString = $.param(params);
@@ -80,7 +81,7 @@ function displayCityResults(json) {
           <p>${json.query.search.snippet}</p>
           `
   )
-  $("knowledge-bar").removeClass('hidden');
+  $("#knowledge-bar").removeClass('hidden');
 
 }
 
@@ -104,7 +105,7 @@ function handleSearchButton() {
         const searchedTerm=$('#search-box').val();
         console.log(`Search for ${searchedTerm} is on!`);
         getWikiData(searchedTerm);
-        console.log('Just called getKnowledgeData...');
+        console.log('Just called getWikiData...');
 //        $('main').html(`${html}`);
     }) 
 
