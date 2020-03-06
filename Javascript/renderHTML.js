@@ -1,4 +1,4 @@
-function renderHomePage(city,country) {
+function renderHomePage(city,country,airport) {
     return(`
     <h3> Welcome to ${city}, ${country} </h3>
     <div>
@@ -12,8 +12,10 @@ function renderHomePage(city,country) {
         </div>
   
         <div class='sub-container2'>
+          <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
+          <div class='weatherInfo'>
+          </div>  
 
-          
         </div>
   
         <div class='sub-container3'>
@@ -35,6 +37,15 @@ function renderHomePage(city,country) {
           </div>
         </form>
       <div>
+
+      <div class='js-results'>
+        <div class='flights'>
+
+        </div>
+        <div class='hotels'>
+          
+        </div>
+      </div>
   
     </div>
    
@@ -57,7 +68,6 @@ function displayWeather(response) {
   let cityName = response.name.toUpperCase();
   let description= response.weather[0].description.toUpperCase();
   let html= `
-    <h3>${cityName}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
     <p class='date'> ${d} </p>
     <div class='currentTemp'> 
       <img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'> 
@@ -66,14 +76,33 @@ function displayWeather(response) {
     <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
     <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
     console.log(html);
-  $('.sub-container2').html(html);
+  $('.weatherInfo').html(html);
+}
+
+function displayFlights(response) {
+  let results=response.data;
+  let html= results.map(obj=>
+    /*
+    let desCityCode=obj.flyTo;
+    let desCountry=obj.country.name;
+    */
+    `<div>
+      <div>
+        <p>${obj.cityFrom}</p>
+        <p>${obj.cityTo}</p>
+        <p>${obj.countryTo.name}</p>
+        <p>Duration: ${obj['fly_duration']} </p>
+        <p>From: $${obj.price} on ${obj.airlines[0]} </p>
+      </div>
+      <div>
+      </div>
+    </div>`
+  )
+  html.join('');
+  $('.flights').html(html);
 }
 
 /*
-function renderFlightPage() {
-  
-}
-
 function renderHotelPage() {
   
 }

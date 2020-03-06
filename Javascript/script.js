@@ -5,7 +5,8 @@ const searchedTerm= {
   cityName: '',
   latitude: '',
   longitude: '',
-  airportCode: '',}
+  airportCode: '',
+  airportName: ''}
 
 const d= new Date();
 console.log(d);
@@ -35,9 +36,11 @@ function handleExploreButton() {
     let index1=cityList1.findIndex(obj=>obj.code===searchedTerm.airportCode);
     searchedTerm.latitude= `${cityList1[index1].lat}`
     searchedTerm.longitude= `${cityList1[index1].lon}`
+    let index2=cityList2.findIndex(obj=>obj.airportCode===searchedTerm.airportCode)
+    searchedTerm.airportName=cityList2[index2].airportName;
     console.log(searchedTerm);
 
-    let html= renderHomePage(searchedTerm.cityName,searchedTerm.countryName);
+    let html= renderHomePage(searchedTerm.cityName,searchedTerm.countryName,searchedTerm.airportName);
     $('main').html(`${html}`);
 
     const URL1= `${wxURL}lat=${searchedTerm.latitude}&lon=${searchedTerm.longitude}`
@@ -55,6 +58,16 @@ function handleExploreButton() {
       throw new Error(`${error.message}`)})
     .then(json=>displayVideo(json))
     .catch (error=> $('.sub-container3').html('Invalid Region Code'))
+
+    const URL3='https://api.skypicker.com/flights?fly_from=PHX&fly_to=anywhere&date_from=08/08/2020&date_to=08/09/2020&flight_type=oneway&partner=picky&v=3&limit=5&sort=price&asc=1&curr=USD'
+    fetch(URL3)
+    .then(response=> {
+      if (response.ok) return response.json()
+      throw new Error(`${error.message}`)})
+    .then(json=>{
+      console.log(json)
+      displayFlights(json)})
+    .catch (error=> console.log(error));
 
   })
 }
