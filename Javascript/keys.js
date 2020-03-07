@@ -8,4 +8,12 @@ const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=
 
 const geoURL='https://api.ipgeolocation.io/timezone?apiKey=2b278b7a7c7b41ae90c3e6e91b208de8&'
 
-//lat=-27.4748&long=153.017
+const googleSearchUrl = "https://kgsearch.googleapis.com/v1/entities:search";
+
+const wikiSearchUrl = "https://en.wikipedia.org/w/api.php";
+
+const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
+
+const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
+
+

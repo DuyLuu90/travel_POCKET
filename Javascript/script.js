@@ -13,12 +13,76 @@ let year=d.getFullYear();
 let month=d.getMonth();
 let date=d.getDate();
 
+function getUnsplashImage(searchedTerm) {
+  console.log("in getUnsplashImage");
+  let params = {
+    client_id: unsplashAccessKey,
+    order_by: "relevant",
+    query: searchedTerm.cityName,
+  }
+  const unsplashQueryString = $.param(params);
+  const url = `${unsplashSearchUrl}?${unsplashQueryString}`;
+  console.log(url);
+  fetch(url).then(resp => {
+    if(resp.ok) {
+      console.log("Image json",resp);
+      return resp.json();
+    }
+    throw new Error(resp.statusText);})
+    .then(respJson=>displaySplashResults(respJson))
+}
+
+ function displaySplashResults(json) {
+    console.log("Display splash image firing!");
+    console.log(json);
+    $(".js-image").append(
+      `<img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}">`)
+}
+
+function getCityCapsuleData(searchedTerm) {
+    let params = {
+        action: "query",
+        format: "json",
+        origin: "*",
+        prop: "extracts",
+        exintro: 1,
+        exsentences: 5,
+        explaintext: 1,
+        redirects: 1,
+        titles: searchedTerm.cityName,
+  }
+    const wikiQueryString = $.param(params);
+    const url = `${wikiSearchUrl}?${wikiQueryString}`;
+    fetch(url).then(resp => {
+        if(resp.ok) {
+          console.log("Wiki json",resp);
+          return resp.json();}
+          throw new Error(resp.statusText);})
+     .then(respJson=>displayWikiResults(respJson))
+
+}
+
+function displayWikiResults(json) {
+  console.log("displayCityResults firing!");
+  console.log(json);
+  let wikiObject = json.query.pages;
+  for (let key in wikiObject) {  
+  $(".one").append(`<p>${wikiObject[key].extract}</p>`)
+      
+  /*<h3>${wikiObject[key].title}</h3>
+  /*$("#js-capsule").removeClass('hidden');*/
+  }
+} 
 /*
 function handleSeachButton() {
   $('#search').submit(event => {
     event.preventDefault();
     let searchedTerm1=$('#search-box').val().toUpperCase();
     let html= renderHomePage(searchedTerm1);
+    getSplashImage(searchedTerm);
+    console.log('Just called getSplashImage...');
+    getCityCapsuleData(searchedTerm);
+    console.log('Just called getCityCapsuleData...');
     $('main').html(`${html}`);
   })  
 }*/
@@ -69,6 +133,9 @@ function handleExploreButton() {
       throw new Error(`${error.message}`)})
     .then(json=>$('.date').html(`${json['date_time_txt']}`))
     .catch(error=>$('.date').html(`${d}`))
+
+    getUnsplashImage(searchedTerm);
+    getCityCapsuleData(searchedTerm);
 
   })
 }
