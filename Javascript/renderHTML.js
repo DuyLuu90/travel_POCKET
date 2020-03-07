@@ -1,7 +1,36 @@
 function renderHomePage(city,country,airport) {
     return(`
     <h1> Welcome to ${city}, ${country} </h1>
-    <div>
+    <div id='home'>
+        <!-- <h1> Welcome to TRAVEL PLANNER</h1> -->
+        <form id='citySearch'>
+          <section class='countryList'>
+            <label for="country">Select a country</label>
+            <select id="country" name="country" class="form-control">
+              <optgroup label="Most Popular">
+                <option value="US">United States</option>
+                <option value="CN">China</option>
+                <option value="JP">Japan</option>
+                <option value="VN">Viet Nam</option>
+                <option value="FR">France</option>
+              </optgroup>
+              <optgroup label="List of countries (A-Z)" id='countryGroup2'>
+
+              </optgroup>
+            </select>
+          </section>
+
+          <section class='cityList'>
+            <label for="city">Select a city</label>
+            <select id="city" name="city" class="form-control">
+              <!-- <option value=""></option> -->
+            </select>
+          </section>
+
+          <input type='submit' value='EXPLORE'>
+        </form>
+      </div>
+
       <div class='container one'>
     
       </div>
@@ -49,8 +78,9 @@ function renderHomePage(city,country,airport) {
       </div>
   
     </div>
-   
+
     `)
+
   }
 
 function displayVideo(response) {
