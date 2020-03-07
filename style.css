@@ -6,18 +6,19 @@
 }
 
 .topnav a {
-  float: left; display: block;
-  color: black; text-align: center;
+  float: left; display: block; 
+  background-color: rgb(52, 153, 235);
+  color: white; text-align: center;
   padding: 14px 16px; text-decoration: none;}
 
 .topnav a:hover {
-  background-color: rgba(190, 211, 73, 0.24);
+  background-color: rgba(9, 226, 82, 0.24);
 }
-
+/*
 .topnav a.active {
   background-color: rgb(52, 153, 235);
   color: white;
-}
+}*/
 
 .search-container {
   float: right; background-color: white;
@@ -141,6 +142,15 @@ iframe {
   color: white;
   background-color: rgba(20, 32, 41, 0.226);
 }
+
+.logo {
+  float: right;
+  margin-right: 10px;
+}
+
+.price {
+  margin-top: 20px;
+} 
 
 
 @media screen and (min-width: 600 px) {

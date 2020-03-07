@@ -9,27 +9,9 @@ const searchedTerm= {
   airportName: ''}
 
 const d= new Date();
-console.log(d);
-
-/*
-const googleSearchUrl = "https://kgsearch.googleapis.com/v1/entities:search";
-
-const wikiSearchUrl = "https://en.wikipedia.org/w/api.php";
-
-const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
-
-const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
-
-const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
-
-const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
-
-const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
-*/
-
-function refreshPage() {
-  window.location.reload();
-}
+let year=d.getFullYear();
+let month=d.getMonth();
+let date=d.getDate();
 
 function getUnsplashImage(searchedTerm) {
   console.log("in getUnsplashImage");
@@ -38,7 +20,6 @@ function getUnsplashImage(searchedTerm) {
     order_by: "relevant",
     query: searchedTerm.cityName,
   }
-
   const unsplashQueryString = $.param(params);
   const url = `${unsplashSearchUrl}?${unsplashQueryString}`;
   console.log(url);
@@ -86,12 +67,10 @@ function displayWikiResults(json) {
   console.log(json);
   let wikiObject = json.query.pages;
   for (let key in wikiObject) {  
-  $(".one").append(
-      `<li>
-          <style> h3 {text-align: center;} </style>
-          <h3>${wikiObject[key].title}</h3>
-          <p>${wikiObject[key].extract}</p>
-       </li>`)
+  $(".one").append(` <p>${wikiObject[key].extract}</p>`)
+     
+  /*<h3>${wikiObject[key].title}</h3>
+  /*$("#js-capsule").removeClass('hidden');*/
   }
 } 
 /*
@@ -106,7 +85,11 @@ function handleSearchButton() {
     console.log('Just called getCityCapsuleData...');
     $('main').html(`${html}`);
   })  
-} */
+}*/
+
+function handleHomeClicked() {
+  $('#reload').click(event=>location.reload())
+}
 
 function handleExploreButton() {
   $('#citySearch').submit(event=>{
@@ -130,7 +113,8 @@ function handleExploreButton() {
     .then(response=> {
       if (response.ok) return response.json()
       throw new Error (`${response.message}`)  })
-    .then(json=>displayWeather(json))
+    .then(json=>{ console.log(json);
+      displayWeather(json)})
     .catch (error=> $('.sub-container2').html('Sorry, weather information is not available'))
     
     const URL2=`${ytURL}${searchedTerm.countryCode}`
@@ -142,9 +126,25 @@ function handleExploreButton() {
     .then(json=>displayVideo(json))
     .catch (error=> $('.sub-container3').html('Invalid Region Code'))
 
+    const URL3= `${geoURL}&lat=${searchedTerm.latitude}&long=${searchedTerm.longitude}`
+    fetch(URL3)
+    .then(response=> {
+      if (response.ok) return response.json()
+      throw new Error(`${error.message}`)})
+    .then(json=>$('.date').html(`${json['date_time_txt']}`))
+    .catch(error=>$('.date').html(`${d}`))
+
     getUnsplashImage(searchedTerm);
     getCityCapsuleData(searchedTerm);
 
+  })
+}
+
+function handleDate() {
+  $('main').on('change','#formDate', event=> {
+    let fromDate=$('#fromDate').val();
+    console.log(fromDate);
+    $('#toDate').attr('min',`${fromDate}`);
   })
 }
 
@@ -179,14 +179,16 @@ function handleFlightSearchSubmitted() {
   })
 }
 
-function runApp(){
-  //handleSearchButton();
+function runApp() {
+  //handleSeachButton();
+  handleHomeClicked()
   displayCountries();
   displayCity();
   handleExploreButton();
   pageLoad ();
+  handleDate();
   handleFlightSearchSubmitted();
   handleHomePageButton();
 }
 
-$(runApp);
+$(runApp); 
