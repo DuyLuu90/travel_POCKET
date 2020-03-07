@@ -11,14 +11,6 @@ const searchedTerm= {
 const d= new Date();
 console.log(d);
 
-const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
-
-const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
-
-const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
-
-const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
-
 function handleSeachButton() {
   $('#search').submit(event => {
     event.preventDefault();
@@ -54,6 +46,7 @@ function handleExploreButton() {
     .catch (error=> $('.sub-container2').html('Sorry, weather information is not available'))
     
     const URL2=`${ytURL}${searchedTerm.countryCode}`
+    console.log(URL2)
     fetch(URL2)
     .then(response=> {
       if (response.ok) return response.json()
