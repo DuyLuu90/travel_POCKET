@@ -87,7 +87,7 @@ function displayFlights(response) {
     let desCountry=obj.country.name;
     */
     `<div class='flight'>
-      <a href='${obj['deep_link']}' target="_blank">BOOK NOW</a>
+      
       <div class='summary' style https://source.unsplash.com/random/?attraction,>
         <p>${obj.cityFrom} &rarr; </p>
         <h2>${obj.cityTo}</h2>
@@ -98,6 +98,9 @@ function displayFlights(response) {
           <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'>
           <p class='price'>From $${obj.price} </p>
         </div>
+      </div>
+      <div class='booking'>
+        <a href='${obj['deep_link']}' target="_blank">Book now</a>
       </div>
     </div>` 
   )

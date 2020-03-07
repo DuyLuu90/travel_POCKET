@@ -124,13 +124,18 @@ iframe {
 .flight {
   text-align: left;
   background-color: teal;
+  display: flex;
 }
 
-.flight>input {
-  float: right;
-  margin-top: 80px;
-  margin-right: 40px;
-  padding: 20px;
+.booking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+}
+.booking>a {
+  text-decoration: none;
+  padding: 15px;
   background-color: red;
   color: white;
 }
