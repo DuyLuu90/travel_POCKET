@@ -177,7 +177,7 @@ function handleFlightSearchSubmitted() {
 }
 
 function runApp(){
-  handleSeachButton();
+  //handleSeachButton();
   displayCountries();
   displayCity();
   handleExploreButton();
