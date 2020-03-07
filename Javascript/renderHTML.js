@@ -1,5 +1,39 @@
 function renderHomePage(city,country,airport) {
+
+    $("#render-search").empty;
+
     return(`
+    <section id=render-search>
+    <div id='home'>
+        <form id='citySearch'>
+          <section class='countryList'>
+            <label for="country">Select a country</label>
+            <select id="country" name="country" class="form-control">
+              <optgroup label="Most Popular">
+                <option value="US">United States</option>
+                <option value="CN">China</option>
+                <option value="JP">Japan</option>
+                <option value="VN">Viet Nam</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </optgroup>
+              <optgroup label="List of countries (A-Z)" id='countryGroup2'>
+
+              </optgroup>
+            </select>
+          </section>
+
+          <section class='cityList'>
+            <label for="city">Select a city</label>
+            <select id="city" name="city" class="form-control">
+              <!-- <option value=""></option> -->
+            </select>
+          </section>
+
+          <input type='submit' value='EXPLORE'>
+        </form>
+    </div>
+
     <h1> Welcome to ${city}, ${country} </h1>
     <div>
       <div class='container one'>
@@ -102,6 +136,50 @@ function displayFlights(response) {
   $('.flights').html(`
     <h1> Top flight deals for you </h1>
     ${html}`);
+}
+
+function handleHomePageButton() {
+  $('#restart').submit(event=>{
+    event.preventDefault();
+    $("#render-search").empty;
+    $("#render-search").append(
+      `
+      <div id='home'>
+        <form id='citySearch'>
+          <section class='countryList'>
+            <label for="country">Select a country</label>
+            <select id="country" name="country" class="form-control">
+              <optgroup label="Most Popular">
+                <option value="US">United States</option>
+                <option value="CN">China</option>
+                <option value="JP">Japan</option>
+                <option value="VN">Viet Nam</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </optgroup>
+              <optgroup label="List of countries (A-Z)" id='countryGroup2'>
+
+              </optgroup>
+            </select>
+          </section>
+
+          <section class='cityList'>
+            <label for="city">Select a city</label>
+            <select id="city" name="city" class="form-control">
+              <!-- <option value=""></option> -->
+            </select>
+          </section>
+
+          <input type='submit' value='EXPLORE'>
+        </form>
+
+        <div class='image'>
+          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes' id='homeImage'>  
+        </div>
+      </div>
+      `
+    )
+  });
 }
 
 /*

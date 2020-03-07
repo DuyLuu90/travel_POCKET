@@ -11,6 +11,7 @@ const searchedTerm= {
 const d= new Date();
 console.log(d);
 
+/*
 const googleSearchUrl = "https://kgsearch.googleapis.com/v1/entities:search";
 
 const wikiSearchUrl = "https://en.wikipedia.org/w/api.php";
@@ -19,14 +20,17 @@ const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
 
 const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
 
-/*
-
 const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
 
 const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
 
 const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
 */
+
+function refreshPage() {
+  window.location.reload();
+}
+
 function getUnsplashImage(searchedTerm) {
   console.log("in getUnsplashImage");
   let params = {
@@ -50,7 +54,7 @@ function getUnsplashImage(searchedTerm) {
  function displaySplashResults(json) {
     console.log("Display splash image firing!");
     console.log(json);
-    $(".js-image").append(
+    $(".one").append(
       `<img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}">`)
 }
 
@@ -84,14 +88,14 @@ function displayWikiResults(json) {
   for (let key in wikiObject) {  
   $(".one").append(
       `<li>
+          <style> h3 {text-align: center;} </style>
           <h3>${wikiObject[key].title}</h3>
           <p>${wikiObject[key].extract}</p>
        </li>`)
-  /*$("#js-capsule").removeClass('hidden');*/
   }
 } 
 /*
-function handleSeachButton() {
+function handleSearchButton() {
   $('#search').submit(event => {
     event.preventDefault();
     let searchedTerm1=$('#search-box').val().toUpperCase();
@@ -176,12 +180,13 @@ function handleFlightSearchSubmitted() {
 }
 
 function runApp(){
-  //handleSeachButton();
+  //handleSearchButton();
   displayCountries();
   displayCity();
   handleExploreButton();
   pageLoad ();
   handleFlightSearchSubmitted();
+  handleHomePageButton();
 }
 
 $(runApp);
