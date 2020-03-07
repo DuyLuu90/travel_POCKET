@@ -8,9 +8,13 @@ function renderHomePage(city,country,airport) {
   
       <div class='container two'>
         <div class='sub js-image'>
-        CITY IMAGE
+
         </div>
-  
+
+        <div class='sub js-capsule'>
+
+        </div>
+
         <div class='sub js-weather'>
           <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
           <div class='weatherInfo'>

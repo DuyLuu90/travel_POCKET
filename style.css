@@ -35,7 +35,10 @@
 li {
   text-decoration: none;
   text-align: left;
+  list-style-type: none;
 }
+
+
 
 li:hover { background-color: burlywood;}
 
