@@ -9,23 +9,11 @@ const searchedTerm= {
   airportName: ''}
 
 const d= new Date();
-console.log(d);
+let year=d.getFullYear();
+let month=d.getMonth();
+let date=d.getDate();
 
-<<<<<<< HEAD
-const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
-
-const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyA30uKKCO2762Bz4f7RWoy-5yalVDVw5oQ&regionCode='
-
-// extra youtubekey=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To
-
-
-
-const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
-
-const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
-
-=======
->>>>>>> f5a64c7934dd7d65b71ad3fb7acf433067cffd65
+/*
 function handleSeachButton() {
   $('#search').submit(event => {
     event.preventDefault();
@@ -33,6 +21,10 @@ function handleSeachButton() {
     let html= renderHomePage(searchedTerm1);
     $('main').html(`${html}`);
   })  
+}*/
+
+function handleHomeClicked() {
+  $('#reload').click(event=>location.reload())
 }
 
 function handleExploreButton() {
@@ -57,7 +49,8 @@ function handleExploreButton() {
     .then(response=> {
       if (response.ok) return response.json()
       throw new Error (`${response.message}`)  })
-    .then(json=>displayWeather(json))
+    .then(json=>{ console.log(json);
+      displayWeather(json)})
     .catch (error=> $('.sub-container2').html('Sorry, weather information is not available'))
     
     const URL2=`${ytURL}${searchedTerm.countryCode}`
@@ -69,6 +62,22 @@ function handleExploreButton() {
     .then(json=>displayVideo(json))
     .catch (error=> $('.sub-container3').html('Invalid Region Code'))
 
+    const URL3= `${geoURL}&lat=${searchedTerm.latitude}&long=${searchedTerm.longitude}`
+    fetch(URL3)
+    .then(response=> {
+      if (response.ok) return response.json()
+      throw new Error(`${error.message}`)})
+    .then(json=>$('.date').html(`${json['date_time_txt']}`))
+    .catch(error=>$('.date').html(`${d}`))
+
+  })
+}
+
+function handleDate() {
+  $('main').on('change','#formDate', event=> {
+    let fromDate=$('#fromDate').val();
+    console.log(fromDate);
+    $('#toDate').attr('min',`${fromDate}`);
   })
 }
 
@@ -104,12 +113,14 @@ function handleFlightSearchSubmitted() {
 }
 
 function runApp() {
-  handleSeachButton();
+  //handleSeachButton();
+  handleHomeClicked()
   displayCountries();
   displayCity();
   handleExploreButton();
   pageLoad ();
+  handleDate();
   handleFlightSearchSubmitted();
 }
 
-$(runApp);
+$(runApp); 

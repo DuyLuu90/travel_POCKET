@@ -13,6 +13,7 @@ function renderHomePage(city,country,airport) {
   
         <div class='sub js-weather'>
           <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
+          <p class='date'> </p>
           <div class='weatherInfo'>
           </div>  
 
@@ -29,7 +30,7 @@ function renderHomePage(city,country,airport) {
         <h2> Travel tools </h2>
         <p> Enter the date to explore your travel options </p>
         <form id='flight'>
-          <input type='date' id='fromDate' required>
+          <input type='date' id='fromDate' min='${month+1}-${date}-${year}' required>
           <input type='date' id='toDate'>
           <br>
           <br>
@@ -69,7 +70,6 @@ function displayWeather(response) {
   let cityName = response.name.toUpperCase();
   let description= response.weather[0].description.toUpperCase();
   let html= `
-    <p class='date'> ${d} </p>
     <div class='currentTemp'> 
       <img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'> 
       <p>${response.main.temp}<span>&#8451;</span></p>
@@ -88,8 +88,8 @@ function displayFlights(response) {
     let desCountry=obj.country.name;
     */
     `<div class='flight'>
-      <input type='submit' value='$${obj.price}'>
-      <div class='summary'>
+      <a href='${obj['deep_link']}' target="_blank">BOOK NOW</a>
+      <div class='summary' style https://source.unsplash.com/random/?attraction,>
         <p>${obj.cityFrom} &rarr; </p>
         <h2>${obj.cityTo}</h2>
         <p>${obj.countryTo.name}</p>
@@ -97,7 +97,7 @@ function displayFlights(response) {
         <hr>
         <div class=flightFooter'>
           <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'>
-          <p class='price'>From: $${obj.price} </p>
+          <p class='price'>From $${obj.price} </p>
         </div>
       </div>
     </div>` 
@@ -107,7 +107,6 @@ function displayFlights(response) {
     <h1> Top flight deals for you </h1>
     ${html}`);
 }
-//https://content.airhex.com/content/logos/airlines_${obj.airlines[0]}_140_40_r.png alt='${obj.airlines[0]}'
 
 /*
 function renderHotelPage() {

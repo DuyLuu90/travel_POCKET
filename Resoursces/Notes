@@ -41,6 +41,9 @@ https://skyscanner.github.io/slate/#browse-quotes
 
 https://docs.mapbox.com/help/how-mapbox-works/
 
+GET AIRLINES LOGO
+https://content.airhex.com/content/logos/IATA_140_40_r.png
+
 FOR WIKIPEDIA:
 https://en.wikipedia.org/w/api.php?
 
@@ -64,36 +67,3 @@ prop=text
 generator=search
 gsrnamespace=0
 gsrlimit=5
-
-
-
-Back4App
-
-https://www.back4app.com/database/back4app/list-of-all-continents-countries-cities
-https://dashboard.back4app.com/apps
-
-
-App Id: n5uBCgFNLr8XyRAIjwP7ZSU1h464e6frgQVfSCGB
-
-Parse API Address: https://parseapi.back4app.com/
-
-mongodb://admin:uzjIaTtWeoOTFFl3E84sCNjy@mongodb.back4app.com:27017/3e631a7b02da43afbba37b1b7600f774?ssl=true
-
-Client Key: bDmFZC7RDsr4aGbCXig87Kd0otZ4xOWG82ZWy7w1
-Javascript Key: jUMSbMEY3AdgwUbugPoH8H2liNLuO4KMU0H8s015
-.NET Key: n9buRrdfNxHcm9c6vDwf1ysFD1l7mhqvns0PsS80
-REST API Key: 7LSwOYj9GW1EG2jmAW0SggFuyu7VsaEmyQkLjUMi
-Webhook Key: OE4Nf0VZa6d4HllghTdwpwrJsZgernNrvk63CUOT
-File Key: 2d757fea-c120-4863-a040-a752d8cf101e
-Master Key: mQCESnTjHuU4wkQxSbFkQWJ6iIYtK0cu1hQqNCJ2
-
-
-
-
-
-
-
-
-
-
-
