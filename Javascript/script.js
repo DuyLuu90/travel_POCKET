@@ -35,9 +35,15 @@ function getUnsplashImage(searchedTerm) {
  function displaySplashResults(json) {
     console.log("Display splash image firing!");
     console.log(json);
-    $(".js-image").append(
+    if (json.results[0] === undefined) {
+      $(".js-image").append(`<p>${searchedTerm.cityName} has no images available.</p>`
+      )
+    }
+    else {
+      $(".js-image").append(
       `<img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}">`)
-}
+    }
+  }
 
 function getCityCapsuleData(searchedTerm) {
     let params = {
@@ -63,16 +69,19 @@ function getCityCapsuleData(searchedTerm) {
 }
 
 function displayWikiResults(json) {
-  console.log("displayCityResults firing!");
+  console.log("displayWikiResults firing!");
   console.log(json);
-  let wikiObject = json.query.pages;
-  for (let key in wikiObject) {  
-  $(".one").append(`<p>${wikiObject[key].extract}</p>`)
-      
-  /*<h3>${wikiObject[key].title}</h3>
-  /*$("#js-capsule").removeClass('hidden');*/
+  if(json.query.pages[0] == null) {
+    $(".one").append(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
+  }
+  else {
+    let wikiObject = json.query.pages;
+    for (let key in wikiObject) {  
+    $(".one").append(`<p>${wikiObject[key].extract}</p>`)    
+  }
   }
 } 
+
 /*
 function handleSeachButton() {
   $('#search').submit(event => {
@@ -179,13 +188,16 @@ function handleFlightSearchSubmitted() {
   })
 }
 
+
+
+
 function runApp() {
   //handleSeachButton();
   handleHomeClicked()
   displayCountries();
   displayCity();
   handleExploreButton();
-  pageLoad ();
+  pageLoad();
   handleDate();
   handleFlightSearchSubmitted();
 }
