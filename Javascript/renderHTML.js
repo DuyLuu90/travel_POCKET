@@ -1,13 +1,12 @@
 function renderHomePage(city,country,airport) {
     return(`
     <h1> Welcome to ${city}, ${country} </h1>
-    <div>
-      <div class= container info'
-        <div class='container one'>
-          <div class=pageImages></div>
-        </div>
+
+      <div class='container one'>
+          
+      </div>
     
-        <div class='container two'>
+      <div class='container two'>
           <div class='sub js-image'>
 
           </div>
@@ -50,14 +49,16 @@ function renderHomePage(city,country,airport) {
       </div>
   
     </div>
-   
+
     `)
+
   }
 
+/*
 function displayPageImage(response) {
   let x=json.query.pages.thumbnail.source;
   $('.pageImages').html(`<img src='${x}' alt='city image'>`)
-}
+}*/
 
 function displayVideo(response) {
   let array=response.items;
