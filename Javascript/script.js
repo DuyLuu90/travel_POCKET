@@ -51,8 +51,7 @@ function getUnsplashImage(searchedTerm) {
     console.log("Display splash image firing!");
     console.log(json);
     $(".js-image").append(
-      `<li>
-       <p><img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}"></p></li>`)
+      `<img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}">`)
 }
 
 function getCityCapsuleData(searchedTerm) {
@@ -83,12 +82,12 @@ function displayWikiResults(json) {
   console.log(json);
   let wikiObject = json.query.pages;
   for (let key in wikiObject) {  
-  $(".js-capsule").append(
+  $(".one").append(
       `<li>
           <h3>${wikiObject[key].title}</h3>
           <p>${wikiObject[key].extract}</p>
        </li>`)
-  $("#js-capsule").removeClass('hidden');
+  /*$("#js-capsule").removeClass('hidden');*/
   }
 } 
 /*
