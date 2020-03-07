@@ -1,4 +1,6 @@
-* {box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}
 
 .topnav {
   overflow: hidden;
@@ -21,11 +23,15 @@
 }*/
 
 .search-container {
-  float: right; background-color: white;
-  margin-top: 10px; margin-right: 10px; 
+  float: right; 
+  background-color: white;
+  margin-top: 10px; 
+  margin-right: 10px; 
 }
 
-.hidden { display: none}
+.hidden { 
+  display: none;
+}
 
 #suggestion {
   display: block;
@@ -41,9 +47,14 @@ li {
 
 
 
-li:hover { background-color: burlywood;}
+li:hover {
+  background-color: burlywood;
+}
 
-button { cursor: pointer; padding: 10px;}
+button { 
+  cursor: pointer; 
+  padding: 10px;
+}
 
 .search-container input, .search-container button {
   padding: 6px;
@@ -52,7 +63,7 @@ button { cursor: pointer; padding: 10px;}
 
 section { margin-bottom: 10px; }
 
-#citySearch input{
+#citySearch input {
   background-color: rgb(52, 153, 235);
   color: white;
   border-color: rgba(70, 62, 62, 0.13);
@@ -63,9 +74,15 @@ section { margin-bottom: 10px; }
   cursor: pointer;
 }
 
-#homeImage {max-width:400px; height:auto; margin-top: 50px; }
+#homeImage {
+  max-width: 400px; 
+  height: auto; 
+  margin-top: 50px; }
 
-main {padding-top: 60px; text-align:center;}
+main {
+  padding-top: 60px; 
+  text-align: center;
+}
 
 .container {
   background-color: #bbb;
@@ -158,14 +175,15 @@ iframe {
 } 
 
 
-@media screen and (min-width: 600 px) {
+@media screen and (min-width: 600 px) 
+{
 
-.one {
-  display: inline-block;
-}
+  .one {
+    display: inline-block;
+  }
 
-.two {
-  display: inline-block;
-}
-
+  .two {
+    display: inline-block;
+  }
+  
 }

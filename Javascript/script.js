@@ -13,15 +13,19 @@ let year=d.getFullYear();
 let month=d.getMonth();
 let date=d.getDate();
 
-function getUnsplashImage(searchedTerm) {
-  console.log("in getUnsplashImage");
+function getWikiImage(searchedTerm) {
+  console.log("getWikiImage firing!");
   let params = {
-    client_id: unsplashAccessKey,
-    order_by: "relevant",
-    query: searchedTerm.cityName,
+    action: "query",
+    format: "json",
+    origin: "*",
+    prop: "pageimages",
+    pithumbsize: 300,
+    titles: searchedTerm.cityName,
   }
-  const unsplashQueryString = $.param(params);
-  const url = `${unsplashSearchUrl}?${unsplashQueryString}`;
+
+  const wikiImageQueryString = $.param(params);
+  const url = `${wikiSearchUrl}?${wikiImageQueryString}`;
   console.log(url);
   fetch(url).then(resp => {
     if(resp.ok) {
@@ -29,19 +33,22 @@ function getUnsplashImage(searchedTerm) {
       return resp.json();
     }
     throw new Error(resp.statusText);})
-    .then(respJson=>displaySplashResults(respJson))
+    .then(respJson=>displayImageResults(respJson))
 }
 
- function displaySplashResults(json) {
-    console.log("Display splash image firing!");
+ function displayImageResults(json) {
+    console.log("Display image firing!");
     console.log(json);
-    if (json.results[0] === undefined) {
-      $(".js-image").append(`<p>${searchedTerm.cityName} has no images available.</p>`
-      )
-    }
-    else {
-      $(".js-image").append(
-      `<img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}">`)
+    let wikiImageObject = json.query.pages;
+    for (let key in wikiImageObject) {  
+      if(wikiImageObject[key].missing === "") {
+          $(".js-image").append(`<p>${searchedTerm.cityName} has no image available.</p>`)
+      }
+      else {
+          $(".js-image").append(`
+          <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">
+          `
+      )}
     }
   }
 
@@ -57,8 +64,8 @@ function getCityCapsuleData(searchedTerm) {
         redirects: 1,
         titles: searchedTerm.cityName,
   }
-    const wikiQueryString = $.param(params);
-    const url = `${wikiSearchUrl}?${wikiQueryString}`;
+    const wikiDataQueryString = $.param(params);
+    const url = `${wikiSearchUrl}?${wikiDataQueryString}`;
     fetch(url).then(resp => {
         if(resp.ok) {
           console.log("Wiki json",resp);
@@ -75,8 +82,8 @@ function displayWikiResults(json) {
     $(".one").append(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
   }
   else {
-    let wikiObject = json.query.pages;
-    for (let key in wikiObject) {  
+    let wikiTextObject = json.query.pages;
+    for (let key in wikiTextObject) {  
     $(".one").append(`<p>${wikiObject[key].extract}</p>`)    
   }
   }
@@ -143,7 +150,7 @@ function handleExploreButton() {
     .then(json=>$('.date').html(`${json['date_time_txt']}`))
     .catch(error=>$('.date').html(`${d}`))
 
-    getUnsplashImage(searchedTerm);
+    getWikiImage(searchedTerm);
     getCityCapsuleData(searchedTerm);
 
   })
