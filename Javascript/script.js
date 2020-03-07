@@ -13,8 +13,6 @@ const d= new Date();
 console.log(d);
 
 
-let searchedTerm = '';
-
 const googleSearchUrl = "https://kgsearch.googleapis.com/v1/entities:search";
 
 const wikiSearchUrl = "https://en.wikipedia.org/w/api.php";
@@ -23,14 +21,21 @@ const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
 
 const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
 
-function getSplashImage(searchedTerm) {
+const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
 
-  console.log("in getSplashImage");
+const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
+
+const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
+
+
+function getUnsplashImage(searchedTerm) {
+
+  console.log("in getUnsplashImage");
 
   let params = {
     client_id: unsplashAccessKey,
     order_by: "relevant",
-    query: searchedTerm,
+    query: searchedTerm.cityName,
   }
 
   const unsplashQueryString = $.param(params);
@@ -48,21 +53,19 @@ function getSplashImage(searchedTerm) {
 
 }
 
-function displaySplashResults(json) {
+ function displaySplashResults(json) {
 
     console.log("Display splash image firing!");
 
-  $("#knowledge-bar-results").empty(); // Originally in wikidata display function, now needed here
-
-console.log(json);
+    console.log(json);
 
 
-$("#knowledge-bar-results").append(
-    `<li>
-        <p><img src="${json.results[0].urls.thumb}" alt="A picture"></p>
+    $(".js-image").append(
+        `<li>
+              <p><img src="${json.results[0].urls.thumb}" alt="A picture of ${searchedTerm}"></p>
         `
-)
-$("#knowledge-bar").removeClass('hidden'); 
+  )
+
 }
 
 function getCityCapsuleData(searchedTerm) {
@@ -75,7 +78,7 @@ function getCityCapsuleData(searchedTerm) {
         exsentences: 5,
         explaintext: 1,
         redirects: 1,
-        titles: searchedTerm,
+        titles: searchedTerm.cityName,
   }
 
   const wikiQueryString = $.param(params);
@@ -96,57 +99,40 @@ function displayWikiResults(json) {
 
   console.log("displayCityResults firing!");
 
-  
-//  $("#knowledge-bar-results").empty(); // No longer desirable since image function is firing first
-
   console.log(json);
 
   let wikiObject = json.query.pages;
 
   for (let key in wikiObject) {  
 
-  $("#knowledge-bar-results").append(
+  $(".js-capsule").append(
       `<li>
           <h3>${wikiObject[key].title}</h3>
           <p>${wikiObject[key].extract}</p>
           `
   )
-  $("#knowledge-bar").removeClass('hidden');
+  $("#js-capsule").removeClass('hidden');
   }
 
-}
+} 
 
 
-/* function renderHomePage(searchedTerm) {
-    console.log(`renderHomePage firing!`);
-    console.log(`Looking for ${searchedTerm}...`);
 
-    const googleSearchTerm = `${searchedTerm}, France`;
-    getKnowledgeData(googleSearchTerm);
-
-} */
-
-
-const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
-
-const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
-
-const flyURL='https://api.skypicker.com/flights?fly_to=anywhere&partner=picky&v=3&limit=6&one_for_city=1&sort=price&asc=1&curr=USD'
-
-
-function handleSearchButton() {
+/* function handleSearchButton() {
   $('#search').submit(event => {
     event.preventDefault();
     let searchedTerm1=$('#search-box').val().toUpperCase();
     let html= renderHomePage(searchedTerm1);
+
     getSplashImage(searchedTerm);
     console.log('Just called getSplashImage...');
     getCityCapsuleData(searchedTerm);
     console.log('Just called getCityCapsuleData...');
+
     $('main').html(`${html}`);
   })  
 
-}
+} */
 
 function handleExploreButton() {
   $('#citySearch').submit(event=>{
@@ -180,6 +166,9 @@ function handleExploreButton() {
       throw new Error(`${error.message}`)})
     .then(json=>displayVideo(json))
     .catch (error=> $('.sub-container3').html('Invalid Region Code'))
+
+    getUnsplashImage(searchedTerm);
+    getCityCapsuleData(searchedTerm);
 
   })
 }
@@ -217,7 +206,7 @@ function handleFlightSearchSubmitted() {
 
 function runApp() {
 
-  handleSearchButton();
+//  handleSearchButton();
   displayCountries();
   displayCity();
   handleExploreButton();
