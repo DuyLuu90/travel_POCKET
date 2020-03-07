@@ -67,7 +67,7 @@ function displayWikiResults(json) {
   console.log(json);
   let wikiObject = json.query.pages;
   for (let key in wikiObject) {  
-  $(".one").append(`<p>${wikiObject[key].extract}</p>`)
+  $(".one").append(`<div>${wikiObject[key].extract}</div>`)
       
   /*<h3>${wikiObject[key].title}</h3>
   /*$("#js-capsule").removeClass('hidden');*/
@@ -133,6 +133,28 @@ function handleExploreButton() {
       throw new Error(`${error.message}`)})
     .then(json=>$('.date').html(`${json['date_time_txt']}`))
     .catch(error=>$('.date').html(`${d}`))
+
+    
+    let param4 = {
+      origin: '*',
+      action: 'query',
+      prop: 'pageimages',
+      format: 'json',
+      pithumbsize: 300,
+      formatversion: 2,
+      titles: searchedTerm.cityName,
+    }
+
+  let wikiPicString= $.param(param4);
+  let URL4=`${wikiPicEnd}${wikiPicString}`;
+  console.log(URL4);
+
+  /*
+  fetch(URL4)
+    .then(response=>console.log(response.json()))
+    .then(json=>displayPageImage(json))  
+    .catch(error=>console.log(error))
+    */
 
     getUnsplashImage(searchedTerm);
     getCityCapsuleData(searchedTerm);

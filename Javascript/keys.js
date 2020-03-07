@@ -16,4 +16,4 @@ const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
 
 const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
 
-
+const wikiPicEnd='http://en.wikipedia.org/w/api.php?'

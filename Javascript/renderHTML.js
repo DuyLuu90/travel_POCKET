@@ -2,39 +2,40 @@ function renderHomePage(city,country,airport) {
     return(`
     <h1> Welcome to ${city}, ${country} </h1>
     <div>
-      <div class='container one'>
+      <div class= container info'
+        <div class='container one'>
+          <div class=pageImages></div>
+        </div>
     
+        <div class='container two'>
+          <div class='sub js-image'>
+
+          </div>
+
+          <div class='sub js-weather'>
+            <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
+            <p class='date'> </p>
+            <div class='weatherInfo'>
+            </div>  
+          </div>
+    
+          <div class='sub js-video'>
+            <h3>Top 5 trending videos in ${country} </h3>
+            <div id='videoList'></div>
+          </div>
+            
+        </div>
       </div>
-  
-      <div class='container two'>
-        <div class='sub js-image'>
-
-        </div>
-
-        <div class='sub js-weather'>
-          <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
-          <p class='date'> </p>
-          <div class='weatherInfo'>
-          </div>  
-        </div>
-  
-        <div class='sub js-video'>
-          <h3>Top 5 trending videos in ${country} </h3>
-          <div id='videoList'></div>
-        </div>
-          
-      </div> 
   
       <div class='container search'>
         <h2> Travel tools </h2>
         <p> Enter the date to explore your travel options </p>
         <form id='flight'>
-          <input type='date' id='fromDate' min='${month+1}-${date}-${year}' required>
+          <input type='date' id='fromDate' min='${year}-${month+1}-${date}' required>
           <input type='date' id='toDate'>
           <br>
           <br>
-          <input type='submit' value='Check Flight'>
-          
+          <input type='submit' value='Check Flight'> 
         </form>
       </div>    
     
@@ -52,6 +53,11 @@ function renderHomePage(city,country,airport) {
    
     `)
   }
+
+function displayPageImage(response) {
+  let x=json.query.pages.thumbnail.source;
+  $('.pageImages').html(`<img src='${x}' alt='city image'>`)
+}
 
 function displayVideo(response) {
   let array=response.items;
