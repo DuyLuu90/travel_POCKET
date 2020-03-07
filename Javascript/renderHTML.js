@@ -95,7 +95,10 @@ function displayFlights(response) {
         <p>${obj.countryTo.name}</p>
         <p>Duration: ${obj['fly_duration']}</p>
         <hr>
-        <p>From: $${obj.price} on ${obj.airlines[0]}</p>
+        <div class=flightFooter'>
+          <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'>
+          <p class='price'>From: $${obj.price} </p>
+        </div>
       </div>
     </div>` 
   )
@@ -104,6 +107,7 @@ function displayFlights(response) {
     <h1> Top flight deals for you </h1>
     ${html}`);
 }
+//https://content.airhex.com/content/logos/airlines_${obj.airlines[0]}_140_40_r.png alt='${obj.airlines[0]}'
 
 /*
 function renderHotelPage() {

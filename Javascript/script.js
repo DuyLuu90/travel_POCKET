@@ -13,7 +13,11 @@ console.log(d);
 
 const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
 
-const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To&regionCode='
+const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyA30uKKCO2762Bz4f7RWoy-5yalVDVw5oQ&regionCode='
+
+// extra youtubekey=AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To
+
+
 
 const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
 

@@ -139,6 +139,15 @@ iframe {
   background-color: rgba(20, 32, 41, 0.226);
 }
 
+.logo {
+  float: right;
+  margin-right: 10px;
+}
+
+.price {
+  margin-top: 20px;
+} 
+
 
 @media screen and (min-width: 600 px) {
 
