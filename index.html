@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang='en'>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -16,7 +16,7 @@
       <div class="search-container">
         <form id='search'>
           <input type="text" id='search-box' placeholder="Search" >
-          <ul id='display' z-index=1000></ul> 
+          <ul id='suggestion' z-index=1000></ul> 
           <!-- to get the suggestion from server -->
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
@@ -24,7 +24,7 @@
     </nav>
 
     <main>
-      <section id='home'>
+      <div id='home'>
         <!-- <h1> Welcome to TRAVEL PLANNER</h1> -->
         <form id='citySearch'>
           <section class='countryList'>
@@ -34,6 +34,7 @@
                 <option value="US">United States</option>
                 <option value="CN">China</option>
                 <option value="JP">Japan</option>
+                <option value="VN">Viet Nam</option>
               </optgroup>
               <optgroup label="List of countries (A-Z)" id='countryGroup2'>
 
@@ -44,22 +45,17 @@
           <section class='cityList'>
             <label for="city">Select a city</label>
             <select id="city" name="city" class="form-control">
-            <option value="Phoenix">Phoenix</option>
             </select>
           </section>
 
           <input type='submit' value='EXPLORE'>
 
-          
         </form>
 
         <div class='image'>
-
-          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes'>
-
-          <!-- <img src='https://gci.wrdsb.ca/files/2015/05/Welcome-in-different-languages.gif' alt='Welcome'> -->
+          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes' id='homeImage'>  
         </div>
-      </section>
+      </div>
 
       <section id="knowledge-bar" class="hidden">
         
@@ -74,11 +70,14 @@
     </main>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="javascript/script.js"></script>
-    <script src="javascript/renderHTML.js"></script>
-    <script src="javascript/suggestions.js"></script>
-    <script src="javascript/countryList.js"></script>
-    <script src="javascript/cityList.js"></script>
+    <script src="Javascript/script.js"></script>
+    <script src="Javascript/renderHTML.js"></script>
+    <script src="Javascript/suggestions.js"></script>
+    <script src="Javascript/countryList.js"></script>
+    <script src="Javascript/displayCities.js"></script>
+    <script src='Resoursces/cityList1.js'></script>
+    <script src='Resoursces/cityList2.js'></script>
+
   </body>
 
 </html>

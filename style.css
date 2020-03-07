@@ -6,16 +6,12 @@
 }
 
 .topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;}
+  float: left; display: block;
+  color: black; text-align: center;
+  padding: 14px 16px; text-decoration: none;}
 
 .topnav a:hover {
   background-color: rgba(190, 211, 73, 0.24);
-  color: black;
 }
 
 .topnav a.active {
@@ -24,29 +20,13 @@
 }
 
 .search-container {
-  float: right;
-  margin-top: 10px;
-  margin-right: 10px;
-  background-color: white;
+  float: right; background-color: white;
+  margin-top: 10px; margin-right: 10px; 
 }
 
- /* #citySearch {
-  display: flex;
-  justify-content: center; 
-}  */
-section {
-  padding: 10px;
-}
+.hidden { display: none}
 
-.countryList {
-  max-height: 20px;
-}
-
-.hidden {
-  display: none;
-}
-
-#display {
+#suggestion {
   display: block;
   position: absolute;
   margin-top: 20px;
@@ -57,31 +37,32 @@ li {
   text-align: left;
 }
 
-li:hover {
-  background-color: burlywood;
-}
+li:hover { background-color: burlywood;}
 
-.search-container button {
-  background-color: white;
-  cursor: pointer;
-}
+button { cursor: pointer; padding: 10px;}
 
 .search-container input, .search-container button {
   padding: 6px;
   border: none;
 }
 
-img {max-width:400px; height:auto; margin-top: 50px; }
+section { margin-bottom: 10px; }
+
+#citySearch input{
+  background-color: rgb(52, 153, 235);
+  color: white;
+  border-color: rgba(70, 62, 62, 0.13);
+}
+
+#citySearch input:hover{
+  background-color: chocolate;
+  cursor: pointer;
+}
+
+#homeImage {max-width:400px; height:auto; margin-top: 50px; }
 
 main {padding-top: 60px; text-align:center;}
 
-/* .container{
-  position: relative; 
-   margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;  
-} */
 .container {
   background-color: #bbb;
 }
@@ -89,34 +70,84 @@ main {padding-top: 60px; text-align:center;}
   background-color: #ddd;
 }
 
-.sub-container {
-  /* min-width: 150px; */
-  max-width: 150px;
-  min-height: 200px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: pink; 
+.one {
+  width: 100%;
+  min-height: 400px;
 }
 
-.one{
+.two{
   display: flex;
   flex-direction: column;
   align-items: center;
 }  
 
-.two {
-  width: 100%;
-  min-height: 800px;
-}
-
-.button {
+.sub {
+  min-height: 200px;
+  margin-bottom: 20px;
   padding: 10px;
 }
+
+.js-weather {
+  background-color: black;
+  color: yellow;
+}
+
+.date { color: rgb(138, 111, 111);}
+
+.currentTemp {
+  display: flex;
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  justify-content: center;
+}
+
+.js-video{ max-width: 600px;}
+
+#videoList{
+  text-align: left;
+  padding: 10px 20px;
+}
+
+.video{ display: flex;}
+
+iframe {
+  width: 150px;
+  height: 100px;
+  margin-right: 10px;
+}
+
+.flight {
+  text-align: left;
+  background-color: teal;
+}
+
+.flight>input {
+  float: right;
+  margin-top: 80px;
+  margin-right: 40px;
+  padding: 20px;
+  background-color: red;
+  color: white;
+}
+
+.summary {
+  padding: 15px;
+  padding-top: 80px;
+  width: 60%;
+  color: white;
+  background-color: rgba(20, 32, 41, 0.226);
+}
+
 
 @media screen and (min-width: 600 px) {
 
 .one {
-  float:right;
+  display: inline-block;
+}
+
+.two {
+  display: inline-block;
 }
 
 }
