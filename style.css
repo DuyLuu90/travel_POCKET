@@ -183,5 +183,11 @@ iframe {
   width: 40%;
 }
 
+flights {
+  display: inline-block;
+}
+flight {
+  width: 30%;
+}
   
 }
