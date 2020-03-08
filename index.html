@@ -24,8 +24,8 @@
 
     <main>
       <div id='home'>
-        <!-- <h1> Welcome to TRAVEL PLANNER</h1> -->
         <form id='citySearch'>
+          
           <section class='countryList'>
             <label for="country">Select a country</label>
             <select id="country" name="country" class="form-control">
@@ -37,7 +37,6 @@
                 <option value="FR">France</option>
               </optgroup>
               <optgroup label="List of countries (A-Z)" id='countryGroup2'>
-
               </optgroup>
             </select>
           </section>
@@ -48,12 +47,52 @@
               <!-- <option value=""></option> -->
             </select>
           </section>
-
+          
           <input type='submit' value='EXPLORE'>
         </form>
+      </div>
 
-        <div class='image'>
-          <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes' id='homeImage'>  
+      <div class='homeImage'>
+        <img src='https://media3.giphy.com/media/7ZBohU9xXdDRC/source.gif' alt='Flight Routes' id='homeImage'>  
+      </div>
+
+      <div class='js-home hidden'>
+        <h1 class='cityTitle'></h1>
+
+        <div class='container info'>
+          <div class='one'></div>
+      
+          <div class='two'>
+            <div class='sub js-image'></div>
+
+            <div class='sub js-weather'>
+              <h3></h3>
+              <p class='date'> </p>
+              <div class='weatherInfo'></div>  
+            </div>
+
+            <div class='sub js-video'>
+              <h3></h3>
+              <div id='videoList'></div>
+            </div> 
+          </div>    
+        </div>
+
+        <div class='container search'>
+          <h2> Travel tools </h2>
+          <p> Enter the date to explore your travel options </p>
+          <form id='flight'>
+            <input type='date' id='fromDate' required>
+            <input type='date' id='toDate'>
+            <br>
+            <br>
+            <input type='submit' value='Check Flight'> 
+          </form>
+        </div>    
+      
+        <div class='container results'>
+          <div class='flights'></div>
+          <div class='hotels'></div>
         </div>
       </div>
 

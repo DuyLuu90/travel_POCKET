@@ -1,57 +1,8 @@
 function renderHomePage(city,country,airport) {
-    return(`
-    <h1> Welcome to ${city}, ${country} </h1>
-
-      <div class='container one'>
-          
-      </div>
-    
-      <div class='container two'>
-          <div class='sub js-image'>
-
-          </div>
-
-          <div class='sub js-weather'>
-            <h3>${airport}&nbsp;&nbsp; <i class="fa fa-thermometer"></i> </h3>
-            <p class='date'> </p>
-            <div class='weatherInfo'>
-            </div>  
-          </div>
-    
-          <div class='sub js-video'>
-            <h3>Top 5 trending videos in ${country} </h3>
-            <div id='videoList'></div>
-          </div>
-            
-        </div>
-      </div>
-  
-      <div class='container search'>
-        <h2> Travel tools </h2>
-        <p> Enter the date to explore your travel options </p>
-        <form id='flight'>
-          <input type='date' id='fromDate' min='${year}-${month+1}-${date}' required>
-          <input type='date' id='toDate'>
-          <br>
-          <br>
-          <input type='submit' value='Check Flight'> 
-        </form>
-      </div>    
-    
-
-      <div class='container results'>
-        <div class='flights'>
-
-        </div>
-        <div class='hotels'>
-          
-        </div>
-      </div>
-  
-    </div>
-
-    `)
-
+    $('.cityTitle').html(`Welcome to ${city}, ${country}`);
+    $('.js-weather h3').html(`${airport}&nbsp;&nbsp;<i class="fa fa-thermometer"></i>`);
+    $('.js-video h3').html(`Top 5 trending videos in ${country}`);
+    $('.homeImage').hide();
   }
 
 /*
@@ -59,6 +10,33 @@ function displayPageImage(response) {
   let x=json.query.pages.thumbnail.source;
   $('.pageImages').html(`<img src='${x}' alt='city image'>`)
 }*/
+
+function displayWikiResults(json) {
+  console.log(json);
+  let wikiTextObject = json.query.pages;
+  for (let key in wikiTextObject) {
+    if (key==='-1') {
+      $(".one").html(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
+    }
+    else {
+      let content= wikiTextObject[key].extract;
+      console.log(content);
+      $(".one").html(`<p>${content}</p>`) }  
+  }
+} 
+
+function displayImageResults(json) {
+  console.log(json);
+  let wikiImageObject = json.query.pages;
+  for (let key in wikiImageObject) {  
+    if(wikiImageObject[key].missing === "") {
+        $(".js-image").html(`<p>${searchedTerm.cityName} has no image available.</p>`)
+    }
+    else {
+        $(".js-image").html(`
+        <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">`)}
+  }
+}
 
 function displayVideo(response) {
   let array=response.items;
@@ -77,8 +55,8 @@ function displayWeather(response) {
   let description= response.weather[0].description.toUpperCase();
   let html= `
     <div class='currentTemp'> 
-      <img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'> 
-      <p>${response.main.temp}<span>&#8451;</span></p>
+      <div><img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'></div>
+      <p>${response.main.temp}<span>&#8451</span></p>
     </div>
     <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
     <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
