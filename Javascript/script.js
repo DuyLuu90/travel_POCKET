@@ -41,7 +41,7 @@ function displayImageResults(json) {
       }
       else {
           $(".js-image").html(`
-          <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">`)}
+          <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.airportName}">`)}
     }
   }
 
@@ -73,7 +73,7 @@ function displayWikiResults(json) {
   let wikiTextObject = json.query.pages;
     for (let key in wikiTextObject) {
       if (key==='-1') {
-        $(".one").html(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
+        $(".one").html(`<p>${searchedTerm.airportName} has no Wikipedia data available.</p>`)
       }
       else {
         let content= wikiTextObject[key].extract;
