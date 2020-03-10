@@ -231,28 +231,28 @@ $('.pageImages').html(`<img src='${x}' alt='city image'>`)
 
 
 function displayVideo(response) {
-let array=response.items;
-let html= array.map(obj => `
-<div class='video'>    
-  <iframe
-  src="https://www.youtube.com/embed/${obj.id}"></iframe> 
-  <div class='videoTitle'>${obj.snippet.title}</div>
-</div>`)
-html.join('');
-$('#videoList').html(html);
+  let array=response.items;
+  let html= array.map(obj => `
+  <div class='video'>    
+    <iframe
+    src="https://www.youtube.com/embed/${obj.id}"></iframe> 
+    <div class='videoTitle'>${obj.snippet.title}</div>
+  </div>`)
+  html.join('');
+  $('#videoList').html(html);
 }
 
 function displayWeather(response) {
-let cityName = response.name.toUpperCase();
-let description= response.weather[0].description.toUpperCase();
-let html= `
-  <div class='currentTemp'> 
-    <div><img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'></div>
-    <p>${response.main.temp}<span>&#8451</span></p>
-  </div>
-  <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
-  <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
-$('.weatherInfo').html(html);
+  let cityName = response.name.toUpperCase();
+  let description= response.weather[0].description.toUpperCase();
+  let html= `
+    <div class='currentTemp'> 
+      <div><img src='http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png' alt='wxIcon'></div>
+      <p>${response.main.temp}<span>&#8451</span></p>
+    </div>
+    <p> ${response.main['temp_min']}<span>&#8451;</span>/ ${response.main['temp_max']}<span>&#8451;</span> &nbsp;&nbsp; Feels like ${response.main['feels_like']}<span>&#8451;</span> </p>
+    <p> ${description} &nbsp;&nbsp;Humidity ${response.main.humidity}% </p> `
+  $('.weatherInfo').html(html);
 }
 
 function displayFlights(response) {
