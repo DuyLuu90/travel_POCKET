@@ -1,4 +1,4 @@
-const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
+const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=5&format=json&search='
 
 const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyAbFxzPjak1dqh5eRJ7380yy3pJQGPhyGE&regionCode='
 
@@ -17,3 +17,5 @@ const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
 const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
 
 const wikiPicEnd='http://en.wikipedia.org/w/api.php?'
+
+const tugoURL= 'https://api.tugo.com/v1/travelsafe/countries'
