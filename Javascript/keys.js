@@ -1,3 +1,5 @@
+const wikiEndpoint='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&format=json&search='
+
 const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyAbFxzPjak1dqh5eRJ7380yy3pJQGPhyGE&regionCode='
 
 const wxURL='https://api.openweathermap.org/data/2.5/weather?appid=7b211a1b93a6cb41ed410fb0d6ada9a6&units=metric&'
@@ -13,3 +15,5 @@ const wikiSearchUrl = "https://en.wikipedia.org/w/api.php";
 const unsplashSearchUrl = "https://api.unsplash.com/search/photos";
 
 const unsplashAccessKey = "1LLu0GSLnJmNfZPiYd57mbOpyHyTqCmHUS46qGW9eYw"
+
+const wikiPicEnd='http://en.wikipedia.org/w/api.php?'

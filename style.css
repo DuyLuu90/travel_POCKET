@@ -102,10 +102,6 @@ main, #citySearch, .js-home, .info, .two {
 
 .sub img { max-width: 400px; height:auto}
 
-.js-image {
-  color: white;
-}
-
 .js-weather {
   color: yellow;
 }
