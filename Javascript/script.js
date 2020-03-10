@@ -217,6 +217,7 @@ function renderHomePage(city,country,airport) {
   $('.js-weather h3').html(`${airport}&nbsp;&nbsp;<i class="fa fa-thermometer"></i>`);
   $('.js-video h3').html(`Top 5 trending videos in ${country}`);
   $('.homeImage').hide();
+  $('.flights').empty();
 }
 
 /*
