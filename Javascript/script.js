@@ -1,4 +1,5 @@
 'use strict';
+
 const searchedTerm= {
   countryCode: '',
   countryName: '',
@@ -6,7 +7,8 @@ const searchedTerm= {
   latitude: '',
   longitude: '',
   airportCode: '',
-  airportName: ''}
+  airportName: '',
+}
 
 function getWikiImage(searchedTerm) {
   let params = {
@@ -15,8 +17,9 @@ function getWikiImage(searchedTerm) {
     origin: "*",
     prop: "pageimages",
     pithumbsize: 300,
-    titles: searchedTerm.cityName,
+    titles: searchedTerm.airportName,
   }
+
   const wikiImageQueryString = $.param(params);
   const url = `${wikiSearchUrl}?${wikiImageQueryString}`;
   console.log(url);
@@ -29,6 +32,19 @@ function getWikiImage(searchedTerm) {
     .then(respJson=>displayImageResults(respJson))
 }
 
+function displayImageResults(json) {
+  console.log(json);
+  let wikiImageObject = json.query.pages;
+    for (let key in wikiImageObject) {  
+      if(wikiImageObject[key].missing === "") {
+          $(".js-image").html(`<p>${searchedTerm.cityName} has no image available.</p>`)
+      }
+      else {
+          $(".js-image").html(`
+          <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">`)}
+    }
+  }
+
 function getCityCapsuleData(searchedTerm) {
     let params = {
         action: "query",
@@ -39,7 +55,7 @@ function getCityCapsuleData(searchedTerm) {
         exsentences: 5,
         explaintext: 1,
         redirects: 1,
-        titles: searchedTerm.cityName,
+        titles: searchedTerm.airportName,
   }
     const wikiDataQueryString = $.param(params);
     const url = `${wikiSearchUrl}?${wikiDataQueryString}`;
@@ -51,19 +67,20 @@ function getCityCapsuleData(searchedTerm) {
     .then(respJson=>displayWikiResults(respJson))
 
 }
-/*
-function handleSearchButton() {
-  $('#search').submit(event => {
-    event.preventDefault();
-    let searchedTerm1=$('#search-box').val().toUpperCase();
-    let html= renderHomePage(searchedTerm1);
-    getSplashImage(searchedTerm);
-    console.log('Just called getSplashImage...');
-    getCityCapsuleData(searchedTerm);
-    console.log('Just called getCityCapsuleData...');
-    $('main').html(`${html}`);
-  })  
-}*/
+
+function displayWikiResults(json) {
+  console.log(json);
+  let wikiTextObject = json.query.pages;
+    for (let key in wikiTextObject) {
+      if (key==='-1') {
+        $(".one").html(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
+      }
+      else {
+        let content= wikiTextObject[key].extract;
+        console.log(content);
+        $(".one").html(`<p>${content}</p>`) }  
+    }
+} 
 
 function handleHomeClicked() {
   $('#reload').click(event=>location.reload())
@@ -208,32 +225,9 @@ let x=json.query.pages.thumbnail.source;
 $('.pageImages').html(`<img src='${x}' alt='city image'>`)
 }*/
 
-function displayWikiResults(json) {
-console.log(json);
-let wikiTextObject = json.query.pages;
-for (let key in wikiTextObject) {
-  if (key==='-1') {
-    $(".one").html(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
-  }
-  else {
-    let content= wikiTextObject[key].extract;
-    console.log(content);
-    $(".one").html(`<p>${content}</p>`) }  
-}
-} 
 
-function displayImageResults(json) {
-console.log(json);
-let wikiImageObject = json.query.pages;
-for (let key in wikiImageObject) {  
-  if(wikiImageObject[key].missing === "") {
-      $(".js-image").html(`<p>${searchedTerm.cityName} has no image available.</p>`)
-  }
-  else {
-      $(".js-image").html(`
-      <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">`)}
-}
-}
+
+
 
 function displayVideo(response) {
 let array=response.items;
