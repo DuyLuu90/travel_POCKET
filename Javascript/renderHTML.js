@@ -5,25 +5,45 @@ function renderHomePage(city,country,airport) {
     $('.homeImage').hide();
   }
 
-/*
-function displayPageImage(response) {
-  let x=json.query.pages.thumbnail.source;
-  $('.pageImages').html(`<img src='${x}' alt='city image'>`)
-}*/
-
 function displayWikiResults(json) {
   console.log(json);
   let wikiTextObject = json.query.pages;
   for (let key in wikiTextObject) {
-    if (key==='-1') {
-      $(".one").html(`<p>${searchedTerm.cityName} is a very nice city!</p>`)
+    let content= wikiTextObject[key].extract;
+    if (!content) {
+      $(".js-wiki div").html(`
+      <p>'${searchedTerm.cityName}' did not match any document. Please check again later!</p>`)}
+    else if (content===`${searchedTerm.cityName} most often refers to:`) {
+      getWikiSuggestions(searchedTerm.cityName)
     }
     else {
-      let content= wikiTextObject[key].extract;
-      console.log(content);
-      $(".one").html(`<p>${content}</p>`) }  
+      $(".js-wiki div").html(`<p>${content}</p>`) }  
   }
 } 
+
+function displaySuggestion(response) {
+  let links = response[3];
+  let texts= response[1];
+  let html='';
+  for (let i=0; i<links.length; i++) {
+    html += `<a href='${links[i]}'>${texts[i]}</a>`
+  }
+  console.log(html);
+  $('.js-wiki div').html(html);
+}
+
+function displaySafetyInfo(response) {
+  let array=response.safety.safetyInfo;
+  let html=array.map(obj=>`
+  <div>
+    <h4>${obj.category}</h4>
+    <p>${obj.description}</p>
+  </div>`)
+  let x=html.join('');
+  $('.js-safety').html(
+  `<h3> Safety information in ${response.name}</h3>
+  <div> ${x} </div>`)
+}
 
 function displayImageResults(json) {
   console.log(json);
@@ -46,8 +66,8 @@ function displayVideo(response) {
     src="https://www.youtube.com/embed/${obj.id}"></iframe> 
     <div class='videoTitle'>${obj.snippet.title}</div>
   </div>`)
-  html.join('');
-  $('#videoList').html(html);
+  let x=html.join('');
+  $('#videoList').html(`${x}`);
 }
 
 function displayWeather(response) {
@@ -64,8 +84,8 @@ function displayWeather(response) {
 }
 
 function displayFlights(response) {
+  $('#flightHeader').html('Top flight deals for you')
   let results=response.data;
-  
   let html= results.map(obj=> 
     /*
     let desCityCode=obj.flyTo;
@@ -73,26 +93,26 @@ function displayFlights(response) {
     */
     `<div class='flight'>
       
-      <div class='summary' style https://source.unsplash.com/random/?attraction,>
+      <div class='summary'>
         <p>${obj.cityFrom} &rarr; </p>
         <h2>${obj.cityTo}</h2>
         <p>${obj.countryTo.name}</p>
         <p>Duration: ${obj['fly_duration']}</p>
         <hr>
-        <div class=flightFooter'>
-          <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'>
-          <p class='price'>From $${obj.price} </p>
+        <div class='flightFooter'>
+          <p> From $${obj.price}</p>
+          <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'> 
         </div>
       </div>
+
       <div class='booking'>
         <a href='${obj['deep_link']}' target="_blank">Book now</a>
       </div>
+      
     </div>` 
   )
-  html.join('');
-  $('.flights').html(`
-    <h1> Top flight deals for you </h1>
-    ${html}`);
+  let x=html.join('');
+  $('.flights').html(`${x}`);
 }
 
 /*
