@@ -5,57 +5,26 @@
   background-color: #e9e9e9;
 }
 
-a {
+a, a:visited {
   text-decoration: none;
   padding: 14px 16px;
+  color: white
 }
 
 a:hover {
   background-color: green;
-  color: white;
 }
 
 .topnav a {
   float: left; display: block; 
   background-color: rgb(52, 153, 235);
-  color: white; text-align: center;
+  text-align: center;
 }  
-
-/*
-.topnav a.active {
-  background-color: rgb(52, 153, 235);
-  color: white;
-
-.search-container {
-  float: right; 
-  background-color: white;
-  margin-top: 10px; 
-  margin-right: 10px; 
-}
-
-#suggestion {
-  display: block;
-  position: absolute;
-  margin-top: 20px;
-} 
-
-li {
-  text-decoration: none;
-  text-align: left;
-  list-style-type: none;
-}
-
-li:hover { background-color: burlywood;}
 
 button { 
   cursor: pointer; 
   padding: 10px;
 }
-
-.search-container input, .search-container button {
-  padding: 6px;
-  border: none;
-} */
 
 section { margin-bottom: 10px; }
 
@@ -76,8 +45,14 @@ section { margin-bottom: 10px; }
   width: 200px;
 }
 
-#homeImage {
+.homeImage {
+  display: flex;
+  justify-content: center;
+}
+
+#homeImage{
   max-width: 400px; 
+  width: 100%;
   height: auto; 
   margin-top: 50px; }
 
@@ -86,6 +61,26 @@ main {
   text-align: center;}
 
 /********************************************/
+
+#search-container input, #search-container i {
+  padding: 10px;
+  border: none;
+  background-color: white;
+}
+
+#search-container {
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+}
+
+#search-container input {
+  width: 90%;
+}
+
+#search-container input:focus {
+  outline: none;
+}
 
 #map{
   height: 300px;
@@ -99,10 +94,29 @@ main {
   background-color: #ddd;
 }
 
-.js-wiki div {
+.wikiResultBox {
+  display: flex;
+}
+
+.wikiResults {
   display: flex;
   flex-direction: column;
+  text-align: left;
+  width: 60%;
 }
+.wikiImage {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.wikiImage img {
+  width: 100%;
+  height: 100%;
+  max-height: 230px;
+  outline: black;
+}*/
 
 .two {
   display: flex;

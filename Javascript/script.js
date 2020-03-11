@@ -31,15 +31,36 @@ function handleExploreButton() {
     renderHomePage(searchedTerm.cityName,searchedTerm.countryName,searchedTerm.airportName);
 
     //all get API functions are expressed in getAPI.js file
-    getCityCapsuleData(searchedTerm);
+    //getCityCapsuleData(searchedTerm);
+    getWikiSuggestions(searchedTerm.cityName);
+    //getWikiImage(searchedTerm.cityName);
     getSafetyInfo(searchedTerm);
     getMap(searchedTerm.latitude,searchedTerm.longitude);
-    getWikiImage(searchedTerm);
     getWxInfo(searchedTerm);
     getLocalTime(searchedTerm);
     getTrendingVideos(searchedTerm)
   
   })
+}
+
+function handleSearch() {
+  $('#search-box').keydown(event=>{
+    if (event.keyCode === 10 || event.keyCode === 13) {
+      event.preventDefault();
+    }
+    let search=$('#search-box').val();
+    if (search.length ===0) getWikiSuggestions(searchedTerm.cityName)
+    else getWikiSuggestions(search);
+  })
+}
+
+function handleHoverLink() {
+  $('.wikiResults').mouseover('.wikiLinks',event=>{
+    let string=$(event.target).text();
+    getWikiImage(string)
+  })
+  $('.wikiResults').mouseout('.wikiLinks',event=>{
+    $('.wikiImage').empty();})
 }
 
 function handleDate() {
@@ -70,6 +91,8 @@ function runApp() {
   pageLoad();
   displayCity();
   handleExploreButton();
+  handleSearch();
+  handleHoverLink();
   handleDate();
   handleFlightSearchSubmitted();
 }
