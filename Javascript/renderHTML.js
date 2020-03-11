@@ -4,32 +4,36 @@ function renderHomePage(city,country,airport) {
     $('.js-video h3').html(`Top 5 trending videos in ${country}`);
     $('.homeImage').hide();
   }
-
+/*
 function displayWikiResults(json) {
   console.log(json);
   let wikiTextObject = json.query.pages;
   for (let key in wikiTextObject) {
     let content= wikiTextObject[key].extract;
     if (!content) {
-      $(".js-wiki div").html(`
+      $(".wikiResults").html(`
       <p>'${searchedTerm.cityName}' did not match any document. Please check again later!</p>`)}
     else if (content===`${searchedTerm.cityName} most often refers to:`) {
       getWikiSuggestions(searchedTerm.cityName)
     }
     else {
-      $(".js-wiki div").html(`<p>${content}</p>`) }  
+      $(".wikiResults").html(`<p>${content}</p>`) }  
   }
-} 
+} */
 
 function displaySuggestion(response) {
-  let links = response[3];
+  let searchedTerm= response[0]
   let texts= response[1];
+  let links = response[3];
   let html='';
-  for (let i=0; i<links.length; i++) {
-    html += `<a href='${links[i]}'>${texts[i]}</a>`
-  }
-  console.log(html);
-  $('.js-wiki div').html(html);
+  if (texts.length===0 || links.length===0) {
+    $(".wikiResults").html(`
+      <p>'${searchedTerm}' did not match any document. Please check again later!</p>`)}
+  else {
+    for (let i=0; i<links.length; i++) {
+      html += `<a class='wikiLinks' href='${links[i]}' target='_blank'>${texts[i]}</a>`
+    }
+    $('.wikiResults').html(html)}
 }
 
 function displaySafetyInfo(response) {
@@ -46,15 +50,14 @@ function displaySafetyInfo(response) {
 }
 
 function displayImageResults(json) {
-  console.log(json);
   let wikiImageObject = json.query.pages;
   for (let key in wikiImageObject) {  
-    if(wikiImageObject[key].missing === "") {
-        $(".js-image").html(`<p>${searchedTerm.cityName} has no image available.</p>`)
-    }
-    else {
-        $(".js-image").html(`
-        <img src="${wikiImageObject[key].thumbnail.source}" alt="Image of ${searchedTerm.cityName}">`)}
+    if (wikiImageObject[key].hasOwnProperty('thumbnail')){
+      let content=wikiImageObject[key].thumbnail.source;
+      $(".wikiImage").html(`
+      <img src="${content}" alt="Image">`)}
+
+    else $(".wikiImage").html('No image available')
   }
 }
 

@@ -11,15 +11,7 @@
 
   <body>
     <nav class='topnav'>
-      <a class="active" href="#home" id='reload'>Home Page</a>
-
-      <!-- <div class="search-container">
-        <form id='search'>
-          <input type="text" id='search-box' placeholder="Search" >
-          <ul id='suggestion' z-index=1000></ul> 
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div> -->
+      <a href="#home" id='reload'>Home Page</a>
     </nav>
 
     <main>
@@ -61,17 +53,24 @@
 
         <div class='container info'>
           <div class='one'>
-            <div class='sub js-wiki'>
-              <h3> Wiki Search Results</h3>
-              <div></div>
-            </div>
+            <div class='sub js-map' id='map'></div>
             <div class='sub js-safety'></div>
-
           </div>
       
           <div class='two'>
-            <div class='sub js-map' id='map'></div>
-            <div class='sub js-image'></div>
+            <!-- <div class='sub js-image'></div> -->
+            <div class='sub js-wiki'>
+              <div class="wikiSearch">
+                <form id='search-container'>
+                  <input type="text" id='search-box' placeholder="Search Wikipedia" >
+                  <i class="fa fa-search"></i>
+                </form>
+              </div>
+              <div class='wikiResultBox'>
+                <div class='wikiResults'></div>
+                <div class='wikiImage'></div>
+              </div>
+            </div>
 
             <div class='sub js-weather'>
               <h3></h3>

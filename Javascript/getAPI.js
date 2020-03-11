@@ -1,3 +1,4 @@
+/*
 function getCityCapsuleData(searchedTerm) {
     let params = {
         action: "query",
@@ -20,39 +21,35 @@ function getCityCapsuleData(searchedTerm) {
           throw new Error(resp.statusText);})
     .then(respJson=>displayWikiResults(respJson))
     .catch(error=>console.log(error))
-}
+}*/
 
 function getWikiSuggestions(string) {
-    URL= wikiEndpoint+string;
-    console.log(URL);
+    URL= wikiOpenSearch+string;
     fetch(URL)
     .then(response=>response.json())
     .then(response=>{
-        console.log(response)
         displaySuggestion(response)})
     .catch(error=>console.log(error))
 }
 
-function getWikiImage(searchedTerm) {
+function getWikiImage(string) {
     let params = {
       action: "query",
       format: "json",
       origin: "*",
       prop: "pageimages",
       pithumbsize: 300,
-      titles: searchedTerm.cityName,
+      titles: string,
     }
     const wikiImageQueryString = $.param(params);
     const url = `${wikiSearchUrl}?${wikiImageQueryString}`;
-    console.log(url);
-    console.log(url);
     fetch(url).then(resp => {
       if(resp.ok) {
-        console.log("Image json",resp);
         return resp.json();
       }
       throw new Error(resp.statusText);})
-    .then(respJson=>displayImageResults(respJson))
+    .then(respJson=>{
+      displayImageResults(respJson)})
     .catch(error=>console.log(error))
   }
 
