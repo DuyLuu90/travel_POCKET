@@ -83,7 +83,15 @@ main {
   color: rgb(0,95,131);
 }
 #map{
-  height: 300px;
+  height: 500px;
+}
+.js-safety {
+  padding: 10px;
+}
+
+.js-safety div {
+  max-height: 700px;
+  overflow: auto;
 }
 .two {
   display: flex;
@@ -125,38 +133,37 @@ main {
   position: absolute;
   display: none; 
   overflow: hidden;
-  border-color: gray;
   background-color: white;
   color: black;
-  padding: 10px;
-  width: 320px; height: 150px;
-  top: -155px; right: 0px;  
+  width: 170px; height: 240px;
+  top: -245px; right: 20px;
 }
 .wikiDescription {
-  width: 60%; 
-}
+  padding: 10px;
+} 
 .wikiImage {
-  width: 40%; 
   display: flex;
+  justify-content: center;
   align-items: center;
   text-align: center;
   color: red;
   font-weight: bold;
-  
 }
 .wikiImage img {
-  width: 100%;
-  z-index: 10;
-}
+  width: 170px;
+  height: auto;
+} 
 .wikiLinks:hover .tooltip {
-  display: flex; 
+  display: flex;
+  flex-direction: column;
   z-index: 1000;
 }
+
+/****WX AND YOUTUBE ***/
 
 .js-weather, .js-video h3 {
   color: yellow;
 }
-/****WX AND YOUTUBE ***/
 .date { color: rgb(138, 111, 111);}
 
 .currentTemp {
@@ -237,6 +244,18 @@ input[type='date']::-webkit-inner-spin-button {
 .hidden {display: none}
 
 @media screen and (min-width:500px) {
+
+.wikiLinks:hover .tooltip {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 320px; height: 150px; 
+  top: -155px; 
+}
+.wikiImage { width: 40%;}
+
+.wikiImage img {width: 100%;}
+
+.wikiDescription { width: 60%;}
 
 }
 

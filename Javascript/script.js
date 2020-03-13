@@ -8,43 +8,41 @@ const searchedTerm= {
   airportCode: '',
   airportName: ''}
 
-function handleHomeClicked() {
-  $('#reload').click(event=>location.reload())
+function updateSearchTerm(cityList1,cityList2) {
+  let CC=$('#country').val();
+  searchedTerm.countryCode= CC;
+  searchedTerm.countryName=$('#country option:selected').text(); 
+  searchedTerm.cityName=$('#city option:selected').text().slice(0,-5);
+  searchedTerm.airportCode=$('#city').val();
+  let index1=cityList1.findIndex(obj=>obj.code===searchedTerm.airportCode);
+  searchedTerm.latitude= Number(`${cityList1[index1].lat}`)
+  searchedTerm.longitude= Number(`${cityList1[index1].lon}`)
+  let index2=cityList2.findIndex(obj=>obj.airportCode===searchedTerm.airportCode)
+  searchedTerm.airportName=cityList2[index2].airportName; 
 }
 
-function handleNewCountrySelected() {
-  $('#country').change(event=>renderCityList())
+function handleHomeClicked() {
+  $('#reload').click(event=>location.reload())
 }
 
 function handleExploreButton() {
   $('#citySearch').submit(event=>{
     event.preventDefault();
     $('.js-home').removeClass('hidden');
-    /*
     $('#flightHeader').empty();
-    $('.flights').empty();*/
-    searchedTerm.countryCode=$('#country').val();
-    searchedTerm.countryName=$('#country option:selected').text();
-    searchedTerm.cityName=$('#city option:selected').text().slice(0,-5);
-    searchedTerm.airportCode=$('#city').val();
-    let index1=cityList1.findIndex(obj=>obj.code===searchedTerm.airportCode);
-    searchedTerm.latitude= Number(`${cityList1[index1].lat}`)
-    searchedTerm.longitude= Number(`${cityList1[index1].lon}`)
-    let index2=cityList2.findIndex(obj=>obj.airportCode===searchedTerm.airportCode)
-    searchedTerm.airportName=cityList2[index2].airportName;
+    $('.flights').empty();
     console.log(searchedTerm);
 
     //refer to renderHTML.js for more info
     renderHomePage(searchedTerm.cityName,searchedTerm.countryName,searchedTerm.airportName);
 
     //all get API functions are expressed in getAPI.js file
-
     getWikiSuggestions(searchedTerm.cityName);
-    //getSafetyInfo(searchedTerm);
-    //getMap(searchedTerm.latitude,searchedTerm.longitude);
+    getSafetyInfo(searchedTerm);
+    getMap(searchedTerm.latitude,searchedTerm.longitude);
     getWxInfo(searchedTerm);
     getLocalTime(searchedTerm);
-    //getTrendingVideos(searchedTerm)
+    getTrendingVideos(searchedTerm)
   })
 }
 
@@ -62,8 +60,7 @@ function handleWikiSearch() {
 function handleDate() {
   $('#flight').on('change','#fromDate',event=> {
     let fromDate=$('#fromDate').val();
-    $('#toDate').attr('min',`${fromDate}`);
-  })
+    $('#toDate').attr('min',`${fromDate}`);})
 }
 
 function handleFlightSearchSubmitted() {
@@ -76,16 +73,13 @@ function handleFlightSearchSubmitted() {
     let airport= searchedTerm.airportCode;
     let fromDate=x.join('/');    
     let toDate=y.join('/');
-
     getFlights(airport,fromDate,toDate);    
   })
 }
 
 function runApp() {
   handleHomeClicked();
-  getCountryList();
-  handleNewCountrySelected();
-  renderCityList();
+  getSelections();
   handleExploreButton();
   handleWikiSearch();
   handleDate();

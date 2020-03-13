@@ -1,31 +1,42 @@
-function displayCountries(json){
+function displaySelections(json){
   let country=json.country;
+  let cityList1=json.cityList1;
+  let cityList2=json.cityList2;
+
   let x= country.map(obj=>`
   (<option value="${obj.code}">${obj.name}</option>>`)
-  let html=x.join('');
-  $('#countryGroup2').append(html)
+  let html1=x.join('');
+  $('#countryGroup2').append(html1);
+
+  let CC=$('#country').val();
+  displayCities(CC,cityList1,cityList2);
+  updateSearchTerm(cityList1,cityList2);
+
+  $('#country').change(event=>{
+    let CC=$('#country').val();
+    displayCities(CC,cityList1,cityList2);
+    updateSearchTerm(cityList1,cityList2);
+  })
+  $('#city').change(event=>updateSearchTerm(cityList1,cityList2))
 }
 
-function renderCityList() {
+function displayCities(CC,cityList1,cityList2) {
   let store=[];
-  let CC= $('#country').val();
-  if (CC) {
-      //create a store that has all cities with the CC
-      for (let i=0; i<cityList2.length; i++) {
-          if (cityList2[i].countryCode===CC) store.push(cityList2[i])
-          }
-      //add city prop to store
-      for (let i=0; i<store.length; i++) {
-          let x= store[i].airportCode;
-          let index=cityList1.findIndex(obj=>obj.code===x);
-          store[i].city = `${cityList1[index].city}`;
-          }
+//create a store that has all cities with the CC
+  for (let i=0; i<cityList2.length; i++) {
+    if (cityList2[i].countryCode===CC) store.push(cityList2[i])
+    }
+//add city prop to store
+  for (let i=0; i<store.length; i++) {
+    let x= store[i].airportCode;
+    let index=cityList1.findIndex(obj=>obj.code===x);
+    store[i].city = `${cityList1[index].city}`;
   }
   store.sort((a,b)=>a.city.localeCompare(b.city));
-  let x = store.map(item=>`
+  let y = store.map(item=>`
   <option value='${item.airportCode}'>${item.city}(${item.airportCode})</option>`)
-  let html= x.join('');
-  $('#city').html(html);        
+  let html2= y.join('');
+  $('#city').html(html2);     
 }
 
 function renderHomePage(city,country,airport) {
@@ -55,8 +66,8 @@ function renderHomePage(city,country,airport) {
         html += `
           <a class='wikiLinks' href='${links[i]}' target='_blank'>${texts[i]}
             <div class='tooltip'>
-              <div class='wikiDescription'>${extract}</div>
               <div class='wikiImage'>${wikiImage}</div>
+              <div class='wikiDescription'>${extract}</div>
             </div>
           </a>`
       }

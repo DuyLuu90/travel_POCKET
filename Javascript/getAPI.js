@@ -1,15 +1,8 @@
-function getCountryList() {
-  fetch('https://api.myjson.com/bins/11qle6')
-  .then(resp=>resp.json())
-  .then(json=>displayCountries(json))
-}
-
-/*
-function getJson1() {
+function getSelections() {
   fetch('https://api.npoint.io/7e4b7e9b8cce30477f17')
   .then(res=>res.json())
-  .then(json=>console.log(json))
-}*/
+  .then(json=>displaySelections(json))
+}
 
 function getWikiSuggestions(string) {
   URL= wikiOpenSearch+string;
@@ -64,14 +57,6 @@ function getWikiImage(string) {
   })
   .catch(error=>console.log(error))
 }
-/*
-  if (wikiImageObject[key].hasOwnProperty('pageimage')){
-    let pageImage=wikiImageObject[key].pageimage;
-    let title=wikiImageObject[key].title;
-    $(`"div[name='${title}']"`).html(`
-    <img src="https://commons.wikimedia.org/wiki/File:${pageImage}" alt="Image">`)}
-  else $(".wikiImage").html('No image available')
-}*/
 
 function getMap(num1,num2) {
   let cord= {lat: num1, lng: num2}
