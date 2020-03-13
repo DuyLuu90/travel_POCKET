@@ -12,10 +12,17 @@ function handleHomeClicked() {
   $('#reload').click(event=>location.reload())
 }
 
+function handleNewCountrySelected() {
+  $('#country').change(event=>renderCityList())
+}
+
 function handleExploreButton() {
   $('#citySearch').submit(event=>{
     event.preventDefault();
     $('.js-home').removeClass('hidden');
+    /*
+    $('#flightHeader').empty();
+    $('.flights').empty();*/
     searchedTerm.countryCode=$('#country').val();
     searchedTerm.countryName=$('#country option:selected').text();
     searchedTerm.cityName=$('#city option:selected').text().slice(0,-5);
@@ -31,19 +38,17 @@ function handleExploreButton() {
     renderHomePage(searchedTerm.cityName,searchedTerm.countryName,searchedTerm.airportName);
 
     //all get API functions are expressed in getAPI.js file
-    //getCityCapsuleData(searchedTerm);
+
     getWikiSuggestions(searchedTerm.cityName);
-    //getWikiImage(searchedTerm.cityName);
-    getSafetyInfo(searchedTerm);
-    getMap(searchedTerm.latitude,searchedTerm.longitude);
+    //getSafetyInfo(searchedTerm);
+    //getMap(searchedTerm.latitude,searchedTerm.longitude);
     getWxInfo(searchedTerm);
     getLocalTime(searchedTerm);
-    getTrendingVideos(searchedTerm)
-  
+    //getTrendingVideos(searchedTerm)
   })
 }
 
-function handleSearch() {
+function handleWikiSearch() {
   $('#search-box').keydown(event=>{
     if (event.keyCode === 10 || event.keyCode === 13) {
       event.preventDefault();
@@ -54,15 +59,6 @@ function handleSearch() {
   })
 }
 
-function handleHoverLink() {
-  $('.wikiResults').mouseover('.wikiLinks',event=>{
-    let string=$(event.target).text();
-    getWikiImage(string)
-  })
-  $('.wikiResults').mouseout('.wikiLinks',event=>{
-    $('.wikiImage').empty();})
-}
-
 function handleDate() {
   $('#flight').on('change','#fromDate',event=> {
     let fromDate=$('#fromDate').val();
@@ -71,7 +67,7 @@ function handleDate() {
 }
 
 function handleFlightSearchSubmitted() {
-  $('main').on('submit', '#flight', event=> {
+  $('main').on('submit', '#travelDate', event=>{
     event.preventDefault();
     //change date format
     let x=$('#fromDate').val().split('-').reverse();
@@ -86,13 +82,12 @@ function handleFlightSearchSubmitted() {
 }
 
 function runApp() {
-  handleHomeClicked()
-  displayCountries();
-  pageLoad();
-  displayCity();
+  handleHomeClicked();
+  getCountryList();
+  handleNewCountrySelected();
+  renderCityList();
   handleExploreButton();
-  handleSearch();
-  handleHoverLink();
+  handleWikiSearch();
   handleDate();
   handleFlightSearchSubmitted();
 }

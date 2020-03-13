@@ -1,4 +1,4 @@
-const wikiOpenSearch='http://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=5&format=json&search='
+const wikiOpenSearch='https://en.wikipedia.org/w/api.php?origin=*&action=opensearch&limit=5&format=json&search='
 
 const ytURL='https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=5&key=AIzaSyAbFxzPjak1dqh5eRJ7380yy3pJQGPhyGE&regionCode='
 
