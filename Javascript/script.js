@@ -58,7 +58,7 @@ function handleWikiSearch() {
 }
 
 function handleDate() {
-  $('#flight').on('change','#fromDate',event=> {
+  $('#travelDate').on('change','#fromDate',event=> {
     let fromDate=$('#fromDate').val();
     $('#toDate').attr('min',`${fromDate}`);})
 }

@@ -41,8 +41,8 @@ function displayCities(CC,cityList1,cityList2) {
 
 function renderHomePage(city,country,airport) {
     $('.cityTitle').html(`Welcome to ${city}, ${country}`);
-    $('.js-weather h3').html(`${airport}&nbsp;&nbsp;<i class="fa fa-thermometer"></i>`);
-    $('.js-video h3').html(`Top 5 trending videos in ${country}`);
+    $('.js-weather h2').html(`${airport}&nbsp;&nbsp;<i class="fa fa-thermometer"></i>`);
+    $('.js-video h2').html(`Top 5 trending videos in ${country}`);
     $('.travel p').html(`Enter the date to find the best flight deals from ${airport}`)
     $('.homeImage').hide();
   }
@@ -78,13 +78,13 @@ function displaySafetyInfo(response) {
   let array=response.safety.safetyInfo;
   let html=array.map(obj=>`
   <div>
-    <h4>${obj.category}</h4>
+    <h3>${obj.category}</h3>
     <p>${obj.description}</p>
   </div>`)
   let x=html.join('');
   $('.js-safety').html(
-  `<h3> Safety information in ${response.name}</h3>
-  <div> ${x} </div>`)
+  `<h2> Safety information in ${response.name}</h2>
+      <div class='safety-info'> ${x} </div>`)
 }
 
 function displayVideo(response) {
