@@ -5,7 +5,7 @@ body {
 }
 
 .topnav {
-  overflow: hidden;
+  overflow: hidden; 
   background-color: rgb(58,75,88);
 }
 
@@ -17,7 +17,7 @@ a, a:visited {
 
 .topnav a {
   float: left; display: block; 
-  background-color: rgb(52, 153, 235);
+  background-color: rgb(52, 153, 235); 
   text-align: center;
 }  
 
@@ -34,9 +34,7 @@ button {
 
 section { margin-bottom: 10px; }
 
-input {
-  padding: 10px;
-}
+input { padding: 10px;}
 
 input[type='submit'] {
   background-color: rgb(0,95,131);
@@ -57,7 +55,7 @@ select {
 }
 
 .homeImage {
-  padding: 20px;
+  padding: 0 20px;
   display: flex;
   justify-content: center;
 }
@@ -74,10 +72,8 @@ main {
 
 /****MAIN-SCREEN*******/
 
-.js-home {
-  background-color: #bbb;
+.container {
   padding: 20px;
-  margin-top: 20px;
 }
 .cityTitle {
   color: rgb(0,95,131);
@@ -89,10 +85,13 @@ main {
   padding: 10px;
 }
 
-.js-safety div {
-  max-height: 700px;
+.safety-info {
+  max-height: 720px;
+  padding: 10px;
   overflow: auto;
+  background-color: whitesmoke;
 }
+
 .two {
   display: flex;
   flex-direction: column;
@@ -104,11 +103,13 @@ main {
 }
 
 /****WIKIPEDIA*******/
+
 #search-container input, #search-container i {
   padding: 10px;
   border: none;
   background-color: white;
 }
+
 #search-container {
   display: flex;
   background-color: white;
@@ -161,8 +162,10 @@ main {
 
 /****WX AND YOUTUBE ***/
 
-.js-weather, .js-video h3 {
+.js-weather, .sub h2 {
   color: yellow;
+  text-align: center;
+  background-color: black;
 }
 .date { color: rgb(138, 111, 111);}
 
@@ -184,7 +187,11 @@ main {
   padding: 10px 20px;
 }
 
-.video{ display: flex;}
+.video{ display: flex; height:110px}
+
+.videoTitle{
+  overflow: hidden;
+}
 
 iframe {
   width: 150px;
@@ -210,10 +217,18 @@ input[type='date']::-webkit-inner-spin-button {
   display: none;
 }
 
+.results {
+  color: white;
+  background-color: rgb(3,150,209);
+  padding: 20px 0px 0px 0px;
+}
+.flights {
+  margin-top: 15px;
+}
+
 .flight {
   text-align: left;
   background-color: teal;
-  color: white;
   display: flex;
   margin-bottom: 5px;
 }
@@ -241,6 +256,10 @@ input[type='date']::-webkit-inner-spin-button {
   color: white;
 }
 
+.booking a:hover {
+  background-color: green;
+}
+
 .hidden {display: none}
 
 @media screen and (min-width:500px) {
@@ -264,6 +283,9 @@ input[type='date']::-webkit-inner-spin-button {
 .info, #citySearch {
   display: flex;
 }
+.info {
+  justify-content: space-between;
+}
 
 #citySearch{
   justify-content: center;
@@ -279,10 +301,10 @@ input[type='date']::-webkit-inner-spin-button {
 
 .one{
   text-align: left;
-  width: 60%;
+  width: 55%;
 }
 .two {
-  width: 40%;
+  width: 44%;
   align-self: flex-start;
 }
 
