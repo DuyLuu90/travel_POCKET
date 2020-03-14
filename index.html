@@ -17,30 +17,31 @@
     <main>
       <div id='home'>
         <form id='citySearch'>
-          
-          <section class='countryList'>
-            <label for="country">Select a country</label>
-            <select id="country" name="country" class="form-control">
-              <optgroup label="Most Popular">
-                <option value="US">United States</option>
-                <option value="CN">China</option>
-                <option value="JP">Japan</option>
-                <option value="VN">Viet Nam</option>
-                <option value="FR">France</option>
-              </optgroup>
-              <optgroup label="List of countries (A-Z)" id='countryGroup2'>
-              </optgroup>
-            </select>
-          </section>
-
-          <section class='cityList'>
-            <label for="city">Select a city</label>
-            <select id="city" name="city" class="form-control">
-              <!-- <option value=""></option> -->
-            </select>
-          </section>
-          
-          <input type='submit' value='EXPLORE'>
+          <div>
+            <section class='countryList'>
+              <label for="country">Select a country</label>
+              <select id="country" name="country" class="form-control">
+                <optgroup label="Most Popular">
+                  <option value="US">United States</option>
+                  <option value="CN">China</option>
+                  <option value="JP">Japan</option>
+                  <option value="VN">Viet Nam</option>
+                  <option value="FR">France</option>
+                </optgroup>
+                <optgroup label="List of countries (A-Z)" id='countryGroup2'>
+                </optgroup>
+              </select>
+            </section>
+            <section class='cityList'>
+              <label for="city">Select a city</label>
+              <select id="city" name="city" class="form-control">
+                <!-- <option value=""></option> -->
+              </select>
+            </section>
+          </div>
+          <div>
+            <input type='submit' value='EXPLORE'>
+          </div>
         </form>
       </div>
 
@@ -58,7 +59,6 @@
           </div>
       
           <div class='two'>
-            <!-- <div class='sub js-image'></div> -->
             <div class='sub js-wiki'>
               <div class="wikiSearch">
                 <form id='search-container'>
@@ -66,33 +66,31 @@
                   <i class="fa fa-search"></i>
                 </form>
               </div>
-              <div class='wikiResultBox'>
-                <div class='wikiResults'></div>
-                <div class='wikiImage'></div>
+              <div class='wikiResults'>
+              
               </div>
             </div>
 
             <div class='sub js-weather'>
-              <h3></h3>
+              <h2></h2>
               <p class='date'> </p>
               <div class='weatherInfo'></div>  
             </div>
 
             <div class='sub js-video'>
-              <h3></h3>
+              <h2></h2>
               <div id='videoList'></div>
             </div> 
           </div>    
         </div>
 
-        <div class='container search'>
+        <div class='container travel'>
           <h2> Travel tools </h2>
-          <p> Enter the date to explore your travel options </p>
-          <form id='flight'>
+          <p></p>
+          <form id='travelDate'>
             <input type='date' id='fromDate' required>
             <input type='date' id='toDate'>
-            <br>
-            <br>
+            <br><br>
             <input type='submit' value='Check Flight'> 
           </form>
         </div>    
@@ -104,16 +102,11 @@
         </div>
       </div>
 
-
     </main>
     
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="Javascript/keys.js"></script>
     <script src="Javascript/renderHTML.js"></script>
-    <script src="Javascript/countryList.js"></script>
-    <script src="Javascript/displayCities.js"></script>
-    <script src='Resoursces/cityList1.js'></script>
-    <script src='Resoursces/cityList2.js'></script>
     <script src="Javascript/getAPI.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbFxzPjak1dqh5eRJ7380yy3pJQGPhyGE"></script> 

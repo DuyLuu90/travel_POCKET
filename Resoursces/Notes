@@ -1,5 +1,8 @@
 /* this is where you put the URL(s), API keys, resources, etc.*/
 
+GET COUNTRY LIST:
+https://api.myjson.com/bins/11qle6
+
 GET YT VIDEOS:
 const ytKey= ‘AIzaSyCQrId_f2HcfIOn3n0-RDBsKIJGIg9w5To’;
 
@@ -27,8 +30,6 @@ https://maps.googleapis.com/maps/api/timezone/json?parameters
 
 GET FLIGHTS:
 https://api.skypicker.com/flights
-
-
 const param3 {
      flyFrom: 
      to:
@@ -48,23 +49,17 @@ https://content.airhex.com/content/logos/IATA_140_40_r.png
 FOR WIKIPEDIA:
 https://en.wikipedia.org/w/api.php?
 
-wiki seems not to support CORS so one way to get around is to use JSONP (json with padding)
-
-optional feature: searchSuggestion/autocomplete
-
-searchURL=''
-contentURL=''
-
 PRAMS: 
 action=query/parse/opensearch
 origin=* //to prevent any CORS issues
 format=json
 search=
 
-pape=Steve+Jobs
-gsrsearch='New_England_Patriots'
+prop=text/pageimage/images/extract
 
-prop=text
-generator=search
-gsrnamespace=0
-gsrlimit=5
+if (wikiImageObject[key].hasOwnProperty('pageimage')){
+    let pageImage=wikiImageObject[key].pageimage;
+    let title=wikiImageObject[key].title;
+    $(`"div[name='${title}']"`).html(`
+    <img src="https://commons.wikimedia.org/wiki/File:${pageImage}" alt="Image">`)}
+else $(".wikiImage").html('No image available')
