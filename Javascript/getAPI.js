@@ -79,7 +79,6 @@ function getSafetyInfo(searchedTerm) {
       if (response.ok) return response.json()
       throw new Error(`${error.message}`)})
   .then(json=>{
-      console.log(json)
       displaySafetyInfo(json)})
   .catch(error=> {
       console.log(error);
@@ -92,8 +91,9 @@ function getWxInfo(searchedTerm) {
   .then(response=> {
     if (response.ok) return response.json()
     throw new Error (`${response.message}`)  })
-  .then(json=>{ console.log(json);
-    displayWeather(json)})
+  .then(json=>{ 
+    displayWeather(json)
+  })
   .catch (error=> $('.sub-container2').html('Sorry, weather information is not available'))
 }
 
@@ -114,11 +114,12 @@ function getTrendingVideos(searchedTerm) {
   fetch(URL2)
   .then(response=> {
     if (response.ok) return response.json()
-    throw new Error('There is an error')})
+    throw new Error('Sorry,there was a problem connecting to the server, please try again later!')
+  })
   .then(json=>displayVideo(json))
   .catch (error=> {
-    console.log(error);
-    $('.sub-container3').html('Invalid Region Code')})
+    const html= `<div class='error'>${error.message}</div>`
+    $('#videoList').html(html)})
 }
 
 function getFlights(airport,fromDate,toDate) {
@@ -133,7 +134,7 @@ function getFlights(airport,fromDate,toDate) {
       if (response.ok) return response.json()
       throw new Error(`${error.message}`)})
   .then(json=>{
-      console.log(json)
+      //console.log(json)
       displayFlights(json)})
   .catch (error=> console.log(error));
 }

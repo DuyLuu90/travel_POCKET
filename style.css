@@ -4,22 +4,11 @@ body {
   margin: 0;
 }
 
-.topnav {
-  overflow: hidden; 
-  background-color: rgb(58,75,88);
-}
-
 a, a:visited {
   text-decoration: none;
   padding: 14px 16px;
   color: white
 }
-
-.topnav a {
-  float: left; display: block; 
-  background-color: rgb(52, 153, 235); 
-  text-align: center;
-}  
 
 a:hover {
   background-color: green;
@@ -28,6 +17,37 @@ a:hover {
 button { 
   cursor: pointer; 
   padding: 10px;
+}
+/*NAV-FOOTER*/
+.app_nav, .app_footer {
+  overflow: hidden; 
+  background-color: rgb(58,75,88);
+  height: 75px;
+}
+.app_footer{
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column;
+  color: white; text-align: center;
+}
+.app_footer .contact{
+  width: 90%;
+  display: flex; text-align: center;
+  align-items: center; justify-content: space-between;
+}
+.contact span {
+  display: none;
+}
+
+.app_nav a {
+  float: left; display: block; font-size: 20px;
+  font-weight: bold; text-align: center;
+}
+.app_nav a:hover, .app_footer a:hover{
+  background-color:  rgb(58,75,88);
+  color: yellow;
+}
+img.logo { 
+  width: 40px; height: 40px; padding: 0;
 }
 
 /******HOME-SCREEN*******/
@@ -61,10 +81,9 @@ select {
 }
 
 #homeImage{
-  max-width: 600px; 
-  width: 100%;
-  height: auto; 
-  margin-top: 50px; }
+  max-width: 500px; 
+  width: 100%;height: auto; 
+  margin: 50px auto; }
 
 main {
   padding-top: 60px; 
@@ -186,6 +205,10 @@ main {
   text-align: left;
   padding: 10px 20px;
 }
+#videoList .error {
+  text-align: center;
+  color: rgb(219, 133, 133);
+}
 
 .video{ display: flex; height:110px}
 
@@ -219,8 +242,7 @@ input[type='date']::-webkit-inner-spin-button {
 
 .results {
   color: white;
-  background-color: rgb(3,150,209);
-  padding: 20px 0px 0px 0px;
+  /*padding: 20px 0px 0px 0px;*/
 }
 .flights {
   margin-top: 15px;
@@ -228,14 +250,22 @@ input[type='date']::-webkit-inner-spin-button {
 
 .flight {
   text-align: left;
-  background-color: teal;
+  /*background-color: teal;*/
   display: flex;
-  margin-bottom: 5px;
+  border-style: solid;
+  border-color: rgb(223, 146, 3);
+  margin-bottom: 10px;
 }
 .summary {
-  padding: 15px; padding-top: 80px;
+  padding: 15px; padding-top: 40px;
   width: 59%;
-  background-color: rgba(20, 32, 41, 0.226);
+  color:black
+  /*background-color: rgba(20, 32, 41, 0.226);*/
+}
+#flightHeader{
+  background-color: orangered;
+  /*color: rgb(100, 95, 95);*/
+  padding: 10px 0;
 }
 .flightFooter {
   display: flex;
@@ -247,6 +277,8 @@ input[type='date']::-webkit-inner-spin-button {
   width: 40%;
   justify-content: center;
   align-items: center;
+  /*background-color: rgba(20, 32, 41, 0.226);*/
+  background-color: rgb(247, 192, 183);
 }
 
 .booking a {
@@ -279,6 +311,10 @@ input[type='date']::-webkit-inner-spin-button {
 }
 
 @media screen and (min-width:800px) {
+
+.contact span {
+  display: flex;
+}
 
 .info, #citySearch {
   display: flex;
