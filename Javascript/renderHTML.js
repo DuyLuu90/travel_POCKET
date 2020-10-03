@@ -76,27 +76,30 @@ function renderHomePage(city,country,airport) {
 
 function displaySafetyInfo(response) {
   let array=response.safety.safetyInfo;
-  let html=array.map(obj=>`
-  <div>
-    <h3>${obj.category}</h3>
-    <p>${obj.description}</p>
-  </div>`)
-  let x=html.join('');
+  
+  let html= (array.length>0)
+  ? array.map(obj=>`
+    <div>
+      <h3>${obj.category}</h3>
+      <p>${obj.description}</p>
+    </div>`).join('')
+  : `<span style="font-weight:bold; color:red">Due to current situation, please avoid non-essential travel</span>`
+  
   $('.js-safety').html(
   `<h2> Safety information in ${response.name}</h2>
-      <div class='safety-info'> ${x} </div>`)
+      <div class='safety-info'> ${html} </div>`)
 }
 
 function displayVideo(response) {
   let array=response.items;
   let html= array.map(obj => `
-  <div class='video'>    
-    <iframe
-    src="https://www.youtube.com/embed/${obj.id}"></iframe> 
-    <div class='videoTitle'>${obj.snippet.title}</div>
-  </div>`)
-  let x=html.join('');
-  $('#videoList').html(`${x}`);
+    <div class='video'>    
+      <iframe
+      src="https://www.youtube.com/embed/${obj.id}"></iframe> 
+      <div class='videoTitle'>${obj.snippet.title}</div>
+    </div>`).join('')
+  
+  $('#videoList').html(`${html}`);
 }
 
 function displayWeather(response) {
@@ -125,7 +128,7 @@ function displayFlights(response) {
         <hr>
         <div class='flightFooter'>
           <p> From $${obj.price}</p>
-          <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='logo' alt='${obj.airlines[0]}'> 
+          <img src='http://pics.avs.io/140/40/${obj.airlines[0]}.png' class='fl-logo' alt='${obj.airlines[0]}'> 
         </div>
       </div>
       <div class='booking'>
