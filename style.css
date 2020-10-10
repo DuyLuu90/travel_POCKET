@@ -28,6 +28,8 @@ button {
   display: flex; align-items: center; justify-content: center;
   flex-direction: column;
   color: white; text-align: center;
+  position: relative;
+  bottom: 0; left: 0; right:0;
 }
 .app_footer .contact{
   width: 90%;

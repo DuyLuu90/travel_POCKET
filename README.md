@@ -1,4 +1,4 @@
-# Travel-Click
+# TravelPOCKET
 
 A convenient application that allows users to select one of thousands cities in the world and see what's happening for that city in just one click. Users will also be able to select any date and see the top destinations (domestic/international) from that city.
 
