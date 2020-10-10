@@ -89,7 +89,9 @@ select {
 
 main {
   padding-top: 60px; 
-  text-align: center;}
+  min-height: 700px;
+  text-align: center;
+}
 
 /****MAIN-SCREEN*******/
 
