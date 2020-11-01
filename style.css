@@ -2,6 +2,8 @@
 
 body {
   margin: 0;
+  position: relative;
+  min-height: 100vh;
 }
 
 a, a:visited {
@@ -28,7 +30,7 @@ button {
   display: flex; align-items: center; justify-content: center;
   flex-direction: column;
   color: white; text-align: center;
-  position: relative;
+  position: absolute;
   bottom: 0; left: 0; right:0;
 }
 .app_footer .contact{
@@ -39,7 +41,6 @@ button {
 .contact span {
   display: none;
 }
-
 .app_nav a {
   float: left; display: block; font-size: 20px;
   font-weight: bold; text-align: center;
@@ -68,20 +69,15 @@ input[type='submit']:hover{
   background-color: chocolate;
   cursor: pointer;
 }
-.cityList label {
-  margin-right: 24px;
-}
 select {
-  width: 230px;
+  width: 220px;
   padding: 10px;
 }
-
 .homeImage {
   padding: 0 20px;
   display: flex;
   justify-content: center;
 }
-
 #homeImage{
   max-width: 500px; 
   width: 100%;height: auto; 
@@ -89,7 +85,7 @@ select {
 
 main {
   padding-top: 60px; 
-  min-height: 800px;
+  padding-bottom: 75px;
   text-align: center;
 }
 
@@ -299,18 +295,27 @@ input[type='date']::-webkit-inner-spin-button {
 .hidden {display: none}
 
 @media screen and (min-width:500px) {
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  section div{
+    width: 120px;
+    text-align: left;
+  }
 
-.wikiLinks:hover .tooltip {
-  display: flex;
-  flex-direction: row-reverse;
-  width: 320px; height: 150px; 
-  top: -155px; 
-}
-.wikiImage { width: 40%;}
+  .wikiLinks:hover .tooltip {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 320px; height: 150px; 
+    top: -155px; 
+  }
+  .wikiImage { width: 40%;}
 
-.wikiImage img {width: 100%;}
+  .wikiImage img {width: 100%;}
 
-.wikiDescription { width: 60%;}
+  .wikiDescription { width: 60%;}
 
 }
 
