@@ -97,6 +97,7 @@ main {
   padding-top: 60px; 
   min-height: 700px;
   text-align: center;}
+  
 
 /****MAIN-SCREEN*******/
 
@@ -330,7 +331,6 @@ input[type='date']::-webkit-inner-spin-button {
 }
 
 @media screen and (min-width:800px) {
-
   .contact span {
     display: flex;
   }
@@ -371,3 +371,46 @@ input[type='date']::-webkit-inner-spin-button {
     width: 50%;
   }
 }
+=======
+.contact span {
+  display: flex;
+}
+
+.info, #citySearch {
+  display: flex;
+}
+.info {
+  justify-content: space-between;
+}
+
+#citySearch{
+  justify-content: center;
+}
+
+#citySearch div:nth-child(2) {
+  display: flex;
+  margin-left: 30px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.one{
+  text-align: left;
+  width: 55%;
+}
+.two {
+  width: 44%;
+  align-self: flex-start;
+}
+
+.flights {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flight {
+  width: 50%;
+}
+}
+
