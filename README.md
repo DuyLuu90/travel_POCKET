@@ -36,6 +36,4 @@ From here, users can select a date of their choice, and see the top 6 destinatio
 
 Duy Luu/ Greg Reid
 
-**Demo:**
-
-[https://duyluu90.github.io/API-HACK-CAPSTONE/](https://duyluu90.github.io/API-HACK-CAPSTONE/)
+[LIVE](https://duyluu90.github.io/travel_POCKET/)
